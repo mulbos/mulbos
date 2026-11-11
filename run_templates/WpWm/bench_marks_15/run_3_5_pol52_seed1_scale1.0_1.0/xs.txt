@@ -1,0 +1,205 @@
+ path2 =
+ ./input.dat                                                                    
+                                                                                
+                                                                                
+              
+ Read_Input done
+ path2 =
+ ./cuts.dat                                                                     
+                                                                                
+                                                                                
+              
+ Warning: cannot read value for key = MINV_4L_1234_MIN. Using default value : 
+  0.000000000000000E+000
+ Warning: cannot read value for key = MINV_4L_1234_MAX. Using default value : 
+   130000000000.000     
+ Read_Cuts done
+ Nlepton =           4
+ Nlep_charged =           2
+ set_run_params done
+LHAPDF 6.5.6 loading /home/ldninh/codes_hep/lib/lhapdf-6.5.6/share/LHAPDF/LUXqed17_plus_PDF4LHC15_nnlo_30/LUXqed17_plus_PDF4LHC15_nnlo_30_0000.dat
+LUXqed17_plus_PDF4LHC15_nnlo_30 PDF set, member #0, version 20001; LHAPDF ID = 82350
+ Directory created successfully, dir =./dist/
+ ============================
+ Process information:
+ ----------------------------
+ Process ID:           3
+ Process contribution:           5
+Process:   -2      2    -11     12     13    -14     21
+ Number of legs:           7
+ Reference frame: V...V cms frame
+ Polarization case:          52
+ OS mapping ID, osmap_case =           1
+ ============================
+ SM coupling parameters:
+ ----------------------------
+ 1/Alfa =   132.234216124179     
+ Alfas(scaleR) =  0.120292002860760     
+ Alfas(MZ) =  0.118000218843074     
+ GF =  1.166370000000000E-005
+ SW2 = (0.222897222523918,0.000000000000000E+000)
+ ----------------------------
+ Gauge-boson masses and widths:
+ MW =   80.3850000000000     
+ MZ =   91.1876000000000     
+ GamW =   2.08500000000000     
+ GamZ =   2.49520000000000     
+ ----------------------------
+ Fermion masses and widths:
+ ME =  0.000000000000000E+000
+ MM =  0.000000000000000E+000
+ ML =  0.000000000000000E+000
+ MU =  0.000000000000000E+000
+ MC =  0.000000000000000E+000
+ MT =   173.000000000000     
+ MD =  0.000000000000000E+000
+ MS =  0.000000000000000E+000
+ MB =  0.000000000000000E+000
+ GamTq =   1.42000000000000     
+ ----------------------------
+ Higgs mass and width:
+ MH =   125.000000000000     
+ GamH =  4.100000000000000E-003
+ ============================
+ Use mass regularization for IR
+ ============================
+ Scale info:
+ Factorization scale is fixed
+ Renormalization scale is fixed
+ scale_muf_case =           1
+ scale_mur_case =           1
+ scale_facF =   1.00000000000000     
+ scale_facR =   1.00000000000000     
+ factorization   scale =   80.3850000000000     
+ renormalization scale =   80.3850000000000     
+ ============================
+ PDF info:
+ PDF set =LUXqed17_plus_PDF4LHC15_nnlo_30.LHgrid
+ PDF member =           0
+ use MSbar scheme for PDF counter term (NLO QCD)
+ Monte Carlo random seed =           1
+ ============================
+
+                                                       Date: 26/11/ 8  01:01
+        **********************************************************
+        *                                                        *
+        *     BBBBBBB     AAAA     SSSSSS   EEEEEE   SSSSSS      *
+        *     BB    BB   AA  AA   SS    SS  EE      SS    SS     *
+        *     BB    BB  AA    AA  SS        EE      SS           *
+        *     BBBBBBB   AAAAAAAA   SSSSSS   EEEEEE   SSSSSS      *
+        *     BB    BB  AA    AA        SS  EE            SS     *
+        *     BB    BB  AA    AA  SS    SS  EE      SS    SS     *
+        *     BBBB BB   AA    AA   SSSSSS   EEEEEE   SSSSSS      *
+        *                                                        *
+        *                   BASES Version 5.1                    *
+        *           coded by S.Kawabata KEK, March 1994          *
+        **********************************************************
+
+
+     <<   Parameters for BASES    >>
+
+      (1) Dimensions of integration etc.
+          # of dimensions :    Ndim    =       12   ( 50 at max.)
+          # of Wilds      :    Nwild   =       12   ( 15 at max.)
+          # of sample points : Ncall   =    32768(real)    32768(given)
+          # of subregions    : Ng      =       50 / variable
+          # of regions       : Nregion =        2 / variable
+          # of Hypercubes    : Ncube   =     4096
+
+      (2) About the integration variables
+          ------+---------------+---------------+-------+-------
+              i       XL(i)           XU(i)       IG(i)   Wild
+          ------+---------------+---------------+-------+-------
+              1    0.000000E+00    1.000000E+00     1      yes
+              2    0.000000E+00    1.000000E+00     1      yes
+              3    0.000000E+00    1.000000E+00     1      yes
+              4    0.000000E+00    1.000000E+00     1      yes
+              5    0.000000E+00    1.000000E+00     1      yes
+              6    0.000000E+00    1.000000E+00     1      yes
+              7    0.000000E+00    1.000000E+00     1      yes
+              8    0.000000E+00    1.000000E+00     1      yes
+              9    0.000000E+00    1.000000E+00     1      yes
+             10    0.000000E+00    1.000000E+00     1      yes
+             11    0.000000E+00    1.000000E+00     1      yes
+             12    0.000000E+00    1.000000E+00     1      yes
+          ------+---------------+---------------+-------+-------
+
+      (3) Parameters for the grid optimization step
+          Max.# of iterations: ITMX1 =        5
+          Expected accuracy  : Acc1  =   0.0200 %
+
+      (4) Parameters for the integration step
+          Max.# of iterations: ITMX2 =        5
+          Expected accuracy  : Acc2  =   0.0100 %
+
+                                                       Date: 26/11/ 8  01:01
+               Convergency Behavior for the Grid Optimization Step
+ ------------------------------------------------------------------------------
+ <- Result of  each iteration ->  <-     Cumulative Result     -> < CPU  time >
+  IT Eff R_Neg   Estimate  Acc %  Estimate(+- Error )order  Acc % ( H: M: Sec )
+ ------------------------------------------------------------------------------
+ ******* WARNING FROM BASES *******************
+ *  Negative FUNCTION at IT =  1 , node =   0 *
+ **********************************************
+   1   9  7.30 -1.158E-03 52.877 -1.157854(+-0.612235)E-03 52.877   0: 0: 0.09
+   2  35 29.50 -1.564E-03 44.750 -1.333985(+-0.460838)E-03 34.546   0: 0: 0.42
+   3  36 27.51  5.232E-02 ****** -1.330021(+-0.460821)E-03 34.648   0: 0: 0.82
+   4  19 12.11 -4.205E-05 99.797 -5.264427(+-4.179247)E-05 79.387   0: 0: 1.08
+   5  28 19.69 -1.929E-04 70.337 -6.479878(+-3.994038)E-05 61.638   0: 0: 1.40
+ ------------------------------------------------------------------------------
+
+                                                       Date: 26/11/ 8  01:01
+               Convergency Behavior for the Integration Step      
+ ------------------------------------------------------------------------------
+ <- Result of  each iteration ->  <-     Cumulative Result     -> < CPU  time >
+  IT Eff R_Neg   Estimate  Acc %  Estimate(+- Error )order  Acc % ( H: M: Sec )
+ ------------------------------------------------------------------------------
+ ******* WARNING FROM BASES *******************
+ *  Negative FUNCTION at IT =  1 , node =   0 *
+ **********************************************
+   1  26 19.22 -1.555E-03 72.737 -1.554713(+-1.130859)E-03 72.737   0: 0: 1.73
+   2  27 19.89  2.515E-03 ****** -1.151571(+-1.073392)E-03 93.211   0: 0: 2.05
+   3  27 19.70 -1.133E-04 ****** -1.077979(+-1.034653)E-03 95.981   0: 0: 2.38
+   4  26 19.31 -3.042E-03 59.316 -1.563954(+-0.897577)E-03 57.391   0: 0: 2.69
+   5  26 19.19 -1.394E-03 28.774 -1.422552(+-0.366268)E-03 25.747   0: 0: 3.00
+ ------------------------------------------------------------------------------
+ *******************************************************************************
+ * (((( Warning in the integration step ))))                                   *
+ *                                                                             *
+ * (1) Temp. accuracy of it-#  1 is too large comparing to 25.00 percent.      *
+ *        Temp. accuracy (72.7375 % )  >>   (25.0000 % )                       *
+ *                                                                             *
+ *                                                                             *
+ *(( Suggestion ))                                                             *
+ * (1) Try integration again with larger number of sample points than this job.*
+ * or                                                                          *
+ * (2) The integral variables are not suited for the function.                 *
+ *     Take another integral variables !!                                      *
+ *                                                                             *
+ *******************************************************************************
+
+                    ****** END OF BASES *********
+
+
+     <<   Computing Time Information   >>
+
+               (1) For BASES              H: M:  Sec
+                   Overhead           :   0: 0: 0.00
+                   Grid Optim. Step   :   0: 0: 1.40
+                   Integration Step   :   0: 0: 1.60
+                   Go time for all    :   0: 0: 3.00
+
+               (2) Expected event generation time
+                   Expected time for 1000 events :      0.01 Sec
+ 
+ -------------------------------------------------------
+Energ, Xsect[pb], error : 0.130E+05  -.14225524E-02  0.36626839E-03
+ -------------------------------------------------------
+ Number of before-cut points:      327680
+ Number of after-cut points:      228214  0.696453857421875     
+ Number of NaN points:           0  0.000000000000000E+000
+ Number of bad points:          20  6.103515625000000E-005
+ Number of bad gram det. points (boxes):           0  0.000000000000000E+000
+ LHAPDFVersion:6.5.6     
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

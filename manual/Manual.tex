@@ -1,0 +1,1039 @@
+%\documentclass[12pt]{article}
+
+\documentclass[english,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+
+\usepackage{geometry}
+\usepackage{epsfig}
+\usepackage{cite}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{soul}
+
+\newcommand\sss{\mathchoice%
+{\displaystyle}%
+{\scriptstyle}%
+{\scriptscriptstyle}%
+{\scriptscriptstyle}%
+}
+\def\lq{\left[}   
+\def\rq{\right]} 
+\def\rg{\right\}} 
+\def\lg{\left\{} 
+\def\({\left(} 
+\def\){\right)} 
+\newcommand\pt{p_{\sss\rm T}}
+\newcommand{\ii}{\mathord{\mathrm{i}}}
+\newcommand{\vbfnlo}{\textsc{VBFNLO}}
+\newcommand{\bases}{\textsc{BASES}}
+\newcommand{\mulbos}{\textsc{MulBos}}
+\newcommand{\formcalc}{\textsc{FormCalc}}
+\newcommand{\feynarts}{\textsc{FeynArts}}
+\newcommand{\madgraph}{\textsc{MadGraph}}
+\newcommand{\sherpa}{\textsc{Sherpa}}
+\newcommand{\mocanlo}{\textsc{MoCaNLO}}
+\newcommand{\loopints}{\textsc{LoopInts}}
+\newcommand{\looptools}{\textsc{LoopTools}}
+\newcommand{\lhapdf}{\textsc{LHAPDF}}
+\newcommand{\msbar}{$\overline{\text{MS}}$}
+\newcommand{\sect}[1]{Section~\ref{#1}}
+\newcommand{\tab}[1]{Table~\ref{#1}}
+\newcommand{\eq}[1]{Eq.~(\ref{#1})}
+\newcommand{\bib}[1]{Ref.~\cite{#1}}
+\newcommand{\refs}[1]{Refs.~\cite{#1}}
+\newcommand{\bibs}[1]{\cite{#1}}
+\newcommand{\fig}[1]{Fig.~\ref{#1}}
+\newcommand{\Openmpi}{\mbox{\textsc{Openmpi}}}
+
+%\textwidth=16cm \textheight=22.5 cm \topmargin 0cm \oddsidemargin-0.2cm
+
+\geometry{verbose,a4paper,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+
+% rotated table headers
+\newcommand{\rot}[1]{\rlap{\rotatebox{45}{#1}}\hspace*{1em}}
+\newcommand{\rotl}[1]{{\rotatebox{45}{#1}}}
+\newcommand{\mcrot}[4]{\multicolumn{#1}{#2}{\rlap{\rotatebox{#3}{#4}~}}} 
+% test letter in string
+\makeatletter
+\def\instring#1#2{TT\fi\begingroup
+  \edef\x{\endgroup\noexpand\in@{#1}{#2}}\x\ifin@}
+\makeatother
+\newcommand{\makeflag}[3]{%
+\if\instring{#1}{#3}{$\checkmark$}\else\if\instring{#2}{#3}{$\bigcirc$}\else{$-$}\fi\fi%
+}
+\newcommand{\bsmoptionsBLHA}[1]{%
+\makeflag{B}{b}{#1} % BLHA
+& 
+\makeflag{L}{l}{#1} % semi-leptonic decay
+&
+\makeflag{F}{f}{#1} % VBF process
+&
+\makeflag{V}{v}{#1} % anomalous Gauge couplings
+&
+\makeflag{H}{h}{#1} % anomalous Higgs couplings
+&
+\makeflag{T}{t}{#1} % Two-Higgs model
+&
+\makeflag{K}{k}{#1} % Kaluza-Klein model
+&
+\makeflag{S}{s}{#1} % Spin-2 model
+&
+\makeflag{M}{m}{#1} % MSSM
+}
+
+
+\newcommand{\bsmgfoptionsBLHA}[1]{%
+\makeflag{B}{b}{#1} % BLHA
+&
+\makeflag{G}{g}{#1} % gluon-fusion process
+&
+\makeflag{L}{l}{#1} % semi-leptonic decay
+&
+\makeflag{H}{h}{#1} % anomalous Higgs couplings
+&
+\makeflag{T}{t}{#1} % general 2HDM
+&
+\makeflag{M}{m}{#1} % MSSM
+}
+\newcommand{\bsmoptions}[1]{%
+\makeflag{L}{l}{#1} % semi-leptonic decay
+&
+\makeflag{F}{f}{#1} % VBF process
+&
+\makeflag{V}{v}{#1} % anomalous Gauge couplings
+&
+\makeflag{H}{h}{#1} % anomalous Higgs couplings
+&
+\makeflag{T}{t}{#1} % Two-Higgs model
+&
+\makeflag{K}{k}{#1} % Kaluza-Klein model
+&
+\makeflag{S}{s}{#1} % Spin-2 model
+&
+\makeflag{M}{m}{#1} % MSSM
+}
+\newcommand{\bsmgfoptions}[1]{%
+\makeflag{G}{g}{#1} % gluon-fusion process
+&
+\makeflag{L}{l}{#1} % semi-leptonic decay
+&
+\makeflag{H}{h}{#1} % anomalous Higgs couplings
+&
+\makeflag{T}{t}{#1} % general 2HDM
+&
+\makeflag{M}{m}{#1} % MSSM
+}
+
+
+\begin{document}
+\begin{titlepage}
+{\begin{flushright}{
+ \begin{minipage}{8.5cm}
+  %Phenikaa/PIAS/2025/XX
+\end{minipage}}\end{flushright}}
+\vspace{1cm}
+\begin{center} {\Large \bf \textsc{MulBos}: A Monte Carlo program
+    } 
+\end{center}
+\begin{center}
+ {\Large \bf  for polarized multiboson production processes --}
+\end{center}
+\begin{center}
+ {\Large \bf  Manual for Version 1.0}
+\end{center}
+\vspace{0.6cm}
+\begin{center}
+
+{\renewcommand{\baselinestretch}{4}
+Duc Ninh Le$^{1}$,
+Thi Nhung Dao$^{1}$,
+Van Cuong Le$^{1}$
+%M.~L\"oschner$^{7}$
+}
+\end{center}
+\vspace{0.4cm}
+\begin{center}
+  $^{1}$ Phenikaa Institute for Advanced Study, Phenikaa University, Hanoi 12116, Vietnam \\ \noindent
+  %$^{9}$ Particle  Physics,  Faculty  of  Physics,  University  of  Vienna,  Austria\\ \noindent  
+\noindent
+\end{center}
+\vspace{0.6cm}
+
+\newpage
+
+\begin{abstract}
+
+\noindent
+  \textsc{MulBos} (for MultiBoson production) is a parton-level program to calculate polarized cross sections 
+  for $W^+W^-$, $W^\pm Z$, and $ZZ$ production processes with fully leptonic decays at the LHC. 
+  The calculations are performed at next-to-leading order (NLO) QCD+EW accuracy. 
+  In this manual, we explain how to install and run the program. Important practical details are also provided. 
+  Extension to triboson production processes will be added in the future. 
+\end{abstract}
+%\vspace{2 cm}
+\today
+\end{titlepage}
+
+\newpage
+
+\tableofcontents
+
+%--------------------------------------------------------------------------------
+%================= Section ======================================================
+%--------------------------------------------------------------------------------
+\newpage
+
+%\section{Introduction}
+%TBF.
+%%%
+\section{Installation and run}
+The source code of \mulbos\ can be downloaded at
+
+\begin{center}
+\url{https://github/mulbos/mulbos/}
+\end{center}
+
+%===================================================================
+
+\subsection{Prerequisites}
+
+The basic installation requires GNU {\tt make}, the {\sc Fortran} compiler Intel {\tt ifx}. 
+A {\tt C} compiler is required for \loopints , which has been 
+tested with {\tt gcc}.
+The library \lhapdf \footnote{\tt
+\url{https://www.lhapdf.org/}}~\cite{Buckley:2014ana} is needed
+for parton distribution functions (PDF). 
+
+For easy compilation and run of the program, the simple python scripts {\tt setup.py} 
+and {\tt run\_VV.py} (with {\tt VV=WZ, WpWm, ZZ}, located in {\tt run\_templates}) are provided. 
+To run these scripts, {\tt python3} is needed. 
+Please note that \lhapdf\ also requires {\tt python3} for installation. 
+%===================================================================
+
+\subsection{Compilation and run}
+\label{sec:compile}
+Upon downloading \mulbos, one goes to the home directory of the program. 
+From here, the compilation can be done with one command: 
+\begin{center}
+{\tt python3 setup.py}
+\end{center}
+This command installs all necessary libraries, except for the \lhapdf. 
+\lhapdf\ (version $\ge$ 6.2.3 is recommended) must be installed separately 
+and the path to the installation folder must be provided in the {\tt run\_VV.py}.
+
+The current version of \mulbos\ is capable of calculating all polarized cross sections 
+for the 4 diboson processes $ZZ$, $W^+W^-$, $W^+Z$, and $W^-Z$ at NLO QCD+EW at proton-proton colliders. 
+Any kinematic distribution can be generated. Event generation is not yet available.
+
+Instructions to calculate polarized cross sections at NLO are given in \sect{sec:cal_pol_xs}. 
+Here we just explain how to perform a run. 
+
+To perform a calculation for a specific process, say $ZZ$, one first creates a personal working directory 
+named e.g. {\tt my\_working}. This directory can be placed anywhere. A good place is the \mulbos\ home directory.
+One then copy the folder {\tt run\_templates/ZZ} to this working directory.
+Go to the folder {\tt my\_working/ZZ} and edit the file {\tt run\_ZZ.py} to
+provide the path to \mulbos\ home directory (search {\tt home\_mulbos}) 
+and the path to LHAPDF library (search {\tt LHAPDF}). Then execute the following commands:
+\begin{center}
+{\tt python3 run\_ZZ.py}
+\end{center}
+You can change the run parameters in {\tt def run()}, the input parameters in\\ 
+{\tt cards/input.dat.in}, 
+and the cut parameters in {\tt cards/cuts.dat.in}. 
+These input and cut parameters have been chosen to be the same as \bib{Carrivale:2025mjy} for the sake of comparison.
+
+Upon running the {\tt run\_ZZ.py} script, a new folder named {\tt results\_*} (which is the default name, you can change it via 
+the variable {\tt output\_dir} in {\tt run\_ZZ.py}) is created if 
+it does not yet exist. The results are then 
+stored in this directory. Folders named {\tt run\_IDp\_IDc\_polXY\_*} are created \footnote{One can easily change this name in {\tt run\_ZZ.py}.}, 
+where {\tt IDp} and {\tt IDc} are the process and contribution identification numbers (ID), respectively.  
+The list of these identification numbers are provided in Tables \ref{tab:IDs_proc_cont_WpZ}, 
+\ref{tab:IDs_proc_cont_WmZ}, \ref{tab:IDs_proc_cont_WW_U}, \ref{tab:IDs_proc_cont_WW_D}, 
+\ref{tab:IDs_proc_cont_WW_gg_aa}, \ref{tab:IDs_proc_cont_WW_B}, 
+\ref{tab:IDs_proc_cont_ZZ_U}, \ref{tab:IDs_proc_cont_ZZ_D}, 
+\ref{tab:IDs_proc_cont_ZZ_gg_aa}, \ref{tab:IDs_proc_cont_ZZ_B}. 
+The last index {\tt polXY} gives the polarization state, see \tab{tab:IDs_polars} for the list of 
+polarization IDs ({\tt XY=IDh}). 
+
+In the {\tt run\_IDp\_IDc\_polXY\_*} folder, the following files are created:
+\begin{enumerate}
+{\tt
+\item makefile
+\item main.F
+\item input.dat
+\item cuts.dat
+\item mulbos
+\item xs.txt
+\item dist/
+}
+\end{enumerate}
+This {\tt run\_IDp\_IDc\_polXY\_*} directory is a complete program in itself. 
+One can copy this folder to another place and compile it to create the executable {\tt mulbos}, 
+and then submit job from there. 
+For an easy use, this compilation and job submission steps have been done in {\tt run\_ZZ.py}. 
+After the job has finished, the integrated cross section is provided in the file {\tt xs.txt}, where
+some basic information about the input parameters and integration parameters are also given. 
+Kinematic distributions are provided in the {\tt dist} folder. 
+The current version of the program cannot generate events.
+
+To get the full NLO results, one has to sum over all relevant processes (e.g. $\bar{U}U$, $\bar{D}D$, $gg$, $\gamma\gamma$, $b\bar{b}$) 
+and contributions (LO, virtual corrections, real emission corrections, ...) 
+for each distribution (or integrated cross section). See \sect{sec:cal_pol_xs} for specific instructions. 
+%===================================================================
+\subsection{Bug reports}
+If you encounter any problems, please inform us via {\tt leducninh@gmail.com} 
+or open an issue in github: \url{https://github.com/mulbos/mulbos/issues}.
+%%%
+\section{Source and directory layout}
+The \mulbos\ source tree contains the following subdirectories:
+\begin{itemize}
+\item {\tt driver/:} Containing the main program {\tt main.F} and a makefile template {\tt makefile.in} 
+which is used to create the final makefile (located in {\tt run\_IDp\_IDc\_polXY} as above discussed).
+\item {\tt tools/:}
+\begin{itemize}
+\item {\tt utilities/:} Containing routines for calculating model parameters, run 
+parameters, 
+generating momenta of external-state particles, 
+on-shell mappings, kinematic cuts, PDFs, filling histograms of kinematic distributions, 
+the integrands of various contributions (LO, virtual corrections, real-emission corrections, ...). 
+The Catani-Seymour-Dittmaier dipole subtraction method is here implemented. 
+Renormalization constants for virtual corrections are here included. 
+Routines to read in input files and print out important information are placed here as well.
+\item {\tt FormCalc\_Tools/:} These interface files are needed for the calculation of the \formcalc\ matrix 
+elements in the {\tt processes} directory. They have been adapted from \formcalc-6.0. 
+In more details, the purpose of these routines are to calculate spinors, polarization vectors for each external-state 
+particle, and some basic functions of these quantities. 
+\item {\tt integrators/:} Containing the Monte-Carlo (MC) integrator {\tt BASES-5.1} \cite{Kawabata:1985yt,Kawabata:1995th}, 
+which is needed for the phase-space integration and kinematic distribution generation. 
+\item {\tt loops/:} Containing the library \loopints, for the calculation of 
+one-loop integrals needed for the virtual corrections or loop-induced processes.
+\end{itemize}
+%%%
+\item {\tt processes/:} Routines to calculate helicity amplitudes for the processes
+provided. The production and decay helicity 
+amplitudes are generated by \formcalc\ + \feynarts. 
+Additional work is needed to combine these amplitudes according to the PA 
+to obtained multi-gauge boson polarized amplitudes. 
+\formcalc-6.0 and \feynarts-3.4 have been used to generate all amplitudes for the diboson processes. 
+Importantly, the list of processes, contributions and their IDs are provided in the {\tt processes\_list.py} file 
+located in this folder.
+\item {\tt run\_templates/:} Run templates for all processes.
+\item {\tt manual/:} The Latex source files of this manual.
+\end{itemize} 
+
+%===================================================================
+\section{License}
+\mulbos\ is distributed under the GNU General Public License~(GPL)
+version~3. This ensures that the source code will be available to users,
+grants them the freedom to use and modify the program and sets
+out the conditions under which it can be redistributed. More details 
+are provided in the {\tt COPYING} file shipped together with the source code.
+%%%
+\section{Credits}
+\mulbos\ contains codes taken and adapted from other open-source programs.
+The matrix elements are based on automatically
+generated code from {\sc FeynArts+FormCalc}~\cite{Kublbeck:1990xc, 
+Hahn:1998yk, Hahn:2000kx, Hahn:2006qw}. 
+Some main interface routines for process and input-parameter initialization are adapted 
+from {\sc FormCalc-6.0} codes. 
+The phase space generation codes, which generate off-shell momenta from random numbers, 
+are based on codes taken from \vbfnlo\ \cite{Arnold:2008rz,Baglio:2014uba,Baglio:2024gyp}. 
+The routines which read in input parameter values from the card files are 
+also taken from \vbfnlo.
+
+A very slightly modified version of the \bases-5.1 \cite{Kawabata:1985yt,Kawabata:1995th} library is shipped 
+together with the code. This is needed for Monte-Carlo integration and the generation of kinematic distributions. 
+
+One-loop integrals are calculated by the library \loopints. Here, some codes are 
+taken and adapted from \looptools\ \cite{Hahn:1998yk}. Specifically, they include the cache system (see {\tt cache.c}), 
+Passarino-Veltman reduction for 3-point and 4-point tensor integrals. The routines to solve the system 
+of linear equations needed by this reduction method are also taken from \looptools, see {\tt solve-LU.F}. 
+The core parts of \loopints, including 2-point integrals, 3-point and 4-point scalar integrals have been implemented by us from scratch. 
+These codes have been cross checked and used in many calculations \cite{Nhung:2009pm,Boudjema:2009pw,Nhung:2013jta,Campanario:2013qba,Baglio:2018rcu,Dao:2024ffg}.
+%%%
+\section{Code flow}
+\label{sec:code_flow}
+After executing {\tt python run\_VV.py}, a new run folder named {\tt run\_*} is 
+created in the {\tt results\_*} directory. 
+
+Go to this run folder, one finds the main program {\tt main.F}, which reads in the input files 
+({\tt input.dat} and {\tt cuts.dat} located in the same directory), 
+initializes important run parameters (e.g. colliding energy, model parameters) 
+and performs the phase space integration. There is a {\tt makefile} there, which links the 
+the main program with the needed libraries.
+
+The phase space integration, which is done via 
+the subroutine {\tt IntegratedCS} located in {\tt tools/utilities/xsection.F}. 
+Here, the number of integration variables is automatically calculated and 
+the subroutine {\tt BASES2} is called. 
+This is an interface to the program {\tt BASES} \cite{Kawabata:1995th}, 
+which is provided in {\tt tools/integrators/basesv5.1}. 
+{\tt BASES} reads in the integrand (named {\tt FUNC}) and then 
+performs the MC integration. 
+It returns the integrated cross section (the mean value and the standard deviation) 
+and a set of kinematic distributions in the folder {\tt dist}. 
+
+The value of the integrand {\tt FUNC} is calculated from the list of random variables $x(i)$, 
+which are generated by {\tt BASES}. 
+The main subroutine here is {\tt DifferentialCS} (located in {\tt tools/utilities/Integrand.F}) where all 
+the external momenta, PDFs, helicity amplitudes are calculated. 
+Kinematic cuts and histogram filling are done via this subroutine as well.
+%%%
+\section{Input files and parameters}
+\label{sec:input} 
+\mulbos\ reads in input parameters through the following input files:
+\begin{itemize}
+\item {\tt run\_VV.py}: Some run parameters.
+\item {\tt input.dat.in}: Run and model parameters.
+\item {\tt cuts.dat.in}: Kinematic cut parameters.
+\end{itemize}
+%%%
+\section{Checks}
+Extensive checks for all components have been done by consistency checks (e.g. UV and IR finiteness) 
+as well as comparing with external programs (\vbfnlo, \sherpa \cite{Hoppe:2023uux}, \mocanlo \cite{Denner:2026phn}). 
+%------------------------------------------------------------------------
+%================= Section ==============================================
+%------------------------------------------------------------------------
+%\newpage
+\section{Calculating polarized cross sections and distributions}
+\label{sec:cal_pol_xs}
+%%%
+Here we give instructions to calculate polarized cross sections and distributions at NLO QCD+EW.
+The list of Polarization ID numbers, denoted as IDh (h for helicity), are provided in \tab{tab:IDs_polars}. 
+The list of Process ID (IDp) and Contribution ID (IDc) numbers are provided in 
+\tab{tab:IDs_proc_cont_WpZ} for $W^+Z$; 
+\tab{tab:IDs_proc_cont_WmZ} for $W^-Z$;
+Tables~\ref{tab:IDs_proc_cont_WW_U},\ref{tab:IDs_proc_cont_WW_D},\ref{tab:IDs_proc_cont_WW_gg_aa}, 
+\ref{tab:IDs_proc_cont_WW_B} for $W^+W^-$;
+Tables~\ref{tab:IDs_proc_cont_ZZ_U},\ref{tab:IDs_proc_cont_ZZ_D},\ref{tab:IDs_proc_cont_ZZ_gg_aa}, 
+\ref{tab:IDs_proc_cont_ZZ_B} for $ZZ$.
+%%%
+\begin{table}[th!]
+% \renewcommand{\arraystretch}{1.3}
+\begin{center}
+%\footnotesize
+%\setlength\tabcolsep{0.03cm}
+%\fontsize{7.0}{7.0}
+\begin{tabular}{|cc|cc|cc|cc|cc|cc|}\hline
+IDh  & Name & IDh & Name & IDh & Name & IDh & Name & IDh & Name & IDh & Name \\
+\hline
+44 & UU & 22 & LL & 25 & LT & 41 & UM & 14 & MU & 45 & UT \\
+52 & TL & 55 & TT & 24 & LU & 42 & UL & 24 & LU & 54 & TU \\
+42 & UL & 54 & TU & 45 & UT & 43 & UP & 34 & PU & $\lambda_1\lambda_2$ &  \\
+\hline
+\end{tabular}
+%%%
+\caption{\small Polarization ID (IDh) numbers and names for the $V_1V_2$ processes. Longitudinal polarization 
+is denoted by the letter L and number $2$, transverse polarization T and $5$, unpolarized case U and $4$, 
+transverse left polarization M and $1$, transverse right polarization P and $3$. 
+The first character is for the first gauge boson $V_1$, the second character for $V_2$. 
+The last IDh denoted as $\lambda_1\lambda_2$ with $\lambda_i = 1,2,3$ is for other possibilities such as $12$, $13$, etc.}
+\label{tab:IDs_polars}
+\end{center}
+\end{table}
+%%%
+\subsection{$WZ$}
+\label{sec:cal_xs_WZ}
+We first take the $W^+Z$ process (IDp = 1) in \tab{tab:IDs_proc_cont_WpZ}.
+In order to obtain results at NLO QCD+EW one has to sum over all contributions with IDc from 1 to 17. 
+Note that the special case of IDc = 0 is reserved for the unpolarized off-shell LO contribution. 
+This is not needed for calculating polarized cross sections. It is however useful for crosschecking with other programs.   
+
+Using the provided python script {\tt run\_WZ.py} in {\tt run\_templates}, one calculates all those 17 contributions for all polarizations as follows:
+\begin{verbatim}
+CALCULATION = "POLAR_NLOQCDEW"
+IDp_range = [1]
+IDh_range = [22,55,52,25,44]
+\end{verbatim}
+This script will create 17 output directories, 
+and submit 17 jobs. After these jobs are finished, one then performs the sum over the results (either 
+the integrated cross section or a given distribution) to obtain the desired NLO QCD+EW result.
+For the $W^-Z$ process (see \tab{tab:IDs_proc_cont_WmZ}), one sets {\tt IDp\_range = [2]}. To submit jobs for both $W^+Z$ and $W^-Z$ processes, 
+then {\tt IDp\_range = [1,2]}. 
+
+To obtain the off-shell LO results, one sets {\tt CALCULATION = "off\_shell"}. Other options including {\tt "POLAR\_LO"}, {\tt "POLAR\_NLOQCD"} 
+are available as given in {\tt run\_WZ.py}.
+%%%
+\subsection{$W^+W^-$}
+\label{sec:cal_xs_WW}
+The processes and contributions for the $W^+W^-$ case are provided in Tables \ref{tab:IDs_proc_cont_WW_U}, \ref{tab:IDs_proc_cont_WW_D}, 
+\ref{tab:IDs_proc_cont_WW_gg_aa}, \ref{tab:IDs_proc_cont_WW_B}. 
+They can all be calculated by invoking {\tt python3 run\_WpWm.py} with the following settings:
+\begin{verbatim}
+CALCULATION = "POLAR_NLOQCDEW"
+# sub-dominant contributions for POLAR calculations:
+gg_process = True
+aa_process = True
+bb_process = 2 # (choose 0 for NO bb, 1 for LO, 2 for NLO)
+IDh_range = [22,55,52,25,44]
+\end{verbatim}
+After all jobs are finished, one then combines the results as follows. 
+For contributions in Tables \ref{tab:IDs_proc_cont_WW_U}, \ref{tab:IDs_proc_cont_WW_D}, 
+\ref{tab:IDs_proc_cont_WW_gg_aa}, we add them together as usual (the errors are combined in quadrature). 
+For the bottom-induced contributions in \tab{tab:IDs_proc_cont_WW_B} we add the contributions with {\tt IDc} from 1 to 17. 
+Combining them all together gives the $\text{YesTW}$ results in \bib{Dao:2024ffg}.
+To obtain the $\text{NoTW}$ results in \bib{Dao:2024ffg} one then subtracts from the $\text{YesTW}$ results
+the contributions with {\tt IDc} from 18 to 21 in \tab{tab:IDs_proc_cont_WW_B}.   
+Note that the sum from 1 to 17 in \tab{tab:IDs_proc_cont_WW_B} includes the $WW$, $tW$ and their interferences, 
+while the contributions from 18 to 21 are the on-shell $tW$.
+%%%
+\subsection{$ZZ$}
+\label{sec:cal_xs_ZZ}
+The processes and contributions for the $ZZ$ case are provided in Tables \ref{tab:IDs_proc_cont_ZZ_U}, \ref{tab:IDs_proc_cont_ZZ_D}, 
+\ref{tab:IDs_proc_cont_ZZ_gg_aa}, \ref{tab:IDs_proc_cont_ZZ_B}. 
+They can all be calculated by invoking {\tt python3 run\_ZZ.py} with the following settings:
+\begin{verbatim}
+CALCULATION = "POLAR_NLOQCDEW"
+# sub-dominant contributions for POLAR calculations:
+gg_process = True
+bb_process = 2 # (choose 0 for NO bb, 1 for LO, 2 for NLO)
+IDh_range = [22,55,52,25,44]
+\end{verbatim}
+The $\gamma\gamma$ process contributes only to the off-shell case and is included there. 
+The NLO QCD+EW cross sections are then obtained by adding all contributions. 
+%%%
+\subsection{Practical advice}
+\label{sec:advice}
+%%% optimal statistics (2^15 to 2^25)
+The statistics for each contribution should be adjusted according to the importance of the contribution. 
+The importance level is judged based on the value of the integrated cross section and the impact on the final distributions.  
+For the $VV$ at NLO QCD+EW, an optimal set of statistics for the up or down contributions from 1 to 17 reads
+\begin{align}
+\log_2 (N_\text{u,VV}^{1\to 17})=\{24,19,19,19,24,22,22,17,17,17,23,21,21,17,21,17,21\},
+\end{align}
+where the LO term receives the highest statistics due to its large cross section.
+The \{5,6,7\} (for QCD) and \{11,12,13,15,17\} (for EW) contributions also receive significant statistics because 
+of their impact on the distributions. There are significant fluctuations in the distributions of these contributions 
+due to the cancellation nature of the dipole-subtraction method \cite{Catani:1996vz,Dittmaier:1999mb}. 
+To smooth out these fluctuations, additionally, one needs to combine results of different random seeds, more below.
+
+For the $gg$ and $\gamma\gamma$, a good choice is $N_\text{gg,VV} = 2^{17}$ for both $WW$ and $ZZ$. 
+
+For the $b$-induced contributions of the $ZZ$ case one can choose $N_\text{b,ZZ}^{1\to 17}=N_\text{u,VV}^{1\to 17}/k$ 
+with $k=2$.
+
+For the $b$-induced contributions of the $WW$ case one can choose
+\begin{align}
+\log_2 (N_\text{b,WW}^{1\to 21})=\{23,18,18,18,23,23,23,16,16,16,22,22,22,16,20,16,20,23,23,21,21\},
+\end{align}
+where the QCD contributions \{6,7\} and \{18,19\} receive large statistics because they are both huge (containing 
+a top resonance) and cancel each other in the $\text{NoTW}$ calculation. 
+Similarly for the EW contributions \{12,13\} and \{20,21\}, with smaller statistics compared to their QCD counterparts 
+due to smaller cross sections.
+
+%%% combine seeds
+To further reduce fluctuations in the kinematic distributions, a good strategy is combining results of different 
+random seeds (one can start with 5 seeds, and increase it if needed). Two common methods for combination are 
+the normal average (using equal weights) and the weighted mean (using weights proportional to $1/\Delta_i^2$ with 
+$\Delta_i$ being the error of the $i$th seed). The weighted-mean method gives smaller error, but it can only 
+be trusted when there are no biases in the calculation of $\Delta_i$. A good practice is to implement both methods and compare 
+the results.
+
+%%% scale uncertainties: mu_F and mu_R dependence
+The standard way to calculate the scale uncertainties is to vary $(\mu_F, \mu_R)$ around the central values 
+$(\mu_{F0}, \mu_{R0})$, up and down by a factor of $2$. A well-known method is the seven-point method. 
+The seven scale points are $(\mu_F, \mu_R) = (i\mu_{F0}, j\mu_{R0})$ 
+with $i=0.5,1,2$ and $j=0.5,1,2$, with the constraint of $i/j < 4$ and $j/i < 4$ to avoid wide-separated scales. 
+In this calculation one can reduce significantly computing time by noting that only the QCD-correction 
+contributions ({\tt IDc=2,3,4,5,6,7} for all $VV$ processes, for the case of $WW$ there are 
+additionally {\tt IDc=18,19}) depend on both $\mu_F$ and $\mu_R$. The other contributions (LO and NLOEW corrections) 
+depend only on $\mu_F$.  
+%%%
+\section{Guidelines for implementing new cuts}
+\label{sec:cuts}
+To implement a new kinematic cut, one first adds an entry to {\tt cards/cuts.dat.in} to give it a name. 
+Then edit the subroutine {\tt Read\_Cuts()} in {\tt utilities/global\_cuts.F90} to read in this value. 
+Then edit the subroutine {\tt DoCut\_DiBoson()} in {\tt utilities/Cut\_tools.F} to implement this cut. 
+For the NLOEW contributions with a photon radiation, one must do charged lepton photon recombination before applying the cut.
+Finally, one must run {\tt make clean} and {\tt make} in {\tt tools/utilities} to update the {\tt utilities} library.
+
+A practical advice: if you are not sure about the momenta, 
+you can use \\
+{\tt vext\_jend(5,nlegs\_max)} to verify. 
+{\tt vext\_jend} contains the information of the 4-momentum (first 4 entries)
+and particle-ID (fifth entry) of all external particles. The particle-IDs are given here \cite{ParticleDataGroup:1998hll}, which is 
+the standard particle numbering scheme for MC generators. 
+Note that lepton-photon recombination has not been done on {\tt vext\_jend}.
+%%%
+\section{Guidelines for implementing new distributions}
+\label{sec:dists}
+To implement a new kinematic distribution, one first adds an entry to \\
+{\tt utilities/Hist\_init\_VV.F} (with {\tt VV=WW,WZ,ZZ})
+to initialize a histogram template. 
+Notice there that each histogram has an ID whose value is given by the variable {\tt Ncout}. 
+This ID will be used to fill the histogram in the corresponding {\tt utilities/Hist\_fill\_VV.F}. 
+As in the case of cuts, one must do charged lepton photon recombination before calculating the bin-position ({\tt pos\_bin}) for 
+filling the histogram \\
+(command {\tt CALL XHFILL(ID,pos\_bin,weight)}).
+%%%
+%\section{Conclusions and Outlook}
+%\section*{Acknowledgments}
+%%%
+\newpage
+\appendix
+%%% Process IDs %%%
+\section{List of processes and contributions}
+\label{sec:list_proc_cont}
+
+\subsection{WZ}
+\begin{table}[th!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+IDp & IDc & Name & Correction Type & Polarized \\
+\hline
+1 & 0 & {\tt UDbarWpZ4lfull-born} & LO & No\\
+1 & 1 & {\tt UDbarWpZ-born} & LO & Yes\\
+1 & 2 & {\tt UDbarWpZ-virtQCD} & NLOQCD & Yes\\
+1 & 3 & {\tt UDbarWpZrad-collQCD} & NLOQCD & Yes\\
+1 & 4 & {\tt UDbarWpZind-collQCD} & NLOQCD & Yes\\
+1 & 5 & {\tt UDbarWpZglu-fin} & NLOQCD & Yes\\
+1 & 6 & {\tt DbargluUbarWpZ-fin} & NLOQCD & Yes\\
+1 & 7 & {\tt UgluDWpZ-fin} & NLOQCD & Yes\\
+1 & 8 & {\tt UDbarWpZ-virtEW} & NLOEW & Yes\\
+1 & 9 & {\tt UDbarWpZrad-collEW} & NLOEW & Yes\\
+1 & 10 & {\tt UDbarWpZind-collEW} & NLOEW & Yes\\
+1 & 11 & {\tt UDbarWpZgam-fin} & NLOEW & Yes\\
+1 & 12 & {\tt DbargamUbarWpZ-fin} & NLOEW & Yes\\
+1 & 13 & {\tt UgamDWpZ-fin} & NLOEW & Yes\\
+1 & 14 & {\tt UDbarWpZ-virtEW-decayZ} & NLOEW & Yes\\
+1 & 15 & {\tt UDbarWpZgam-fin-decayZ} & NLOEW & Yes\\
+1 & 16 & {\tt UDbarWpZ-virtEW-decayW} & NLOEW & Yes\\
+1 & 17 & {\tt UDbarWpZgam-fin-decayW} & NLOEW & Yes\\
+\hline
+\end{tabular}
+\caption{\small Process ID (IDp) and Contribution ID (IDc) numbers for the $W^+Z$ process $pp \to e^+\nu_e\mu^+\mu^-$.}
+\label{tab:IDs_proc_cont_WpZ}
+\end{center}
+\end{table}
+
+\begin{table}[th!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+IDp & IDc & Name & Correction Type & Polarized \\
+\hline
+2 & 0 & {\tt UbarDWmZ4lfull-born} & LO & No\\
+2 & 1 & {\tt UbarDWmZ-born} & LO & Yes\\
+2 & 2 & {\tt UbarDWmZ-virtQCD} & NLOQCD & Yes\\
+2 & 3 & {\tt UbarDWmZrad-collQCD} & NLOQCD & Yes\\
+2 & 4 & {\tt UbarDWmZind-collQCD} & NLOQCD & Yes\\
+2 & 5 & {\tt UbarDWmZglu-fin} & NLOQCD & Yes\\
+2 & 6 & {\tt UbargluDbarWmZ-fin} & NLOQCD & Yes\\
+2 & 7 & {\tt DgluUWmZ-fin} & NLOQCD & Yes\\
+2 & 8 & {\tt UbarDWmZ-virtEW} & NLOEW & Yes\\
+2 & 9 & {\tt UbarDWmZrad-collEW} & NLOEW & Yes\\
+2 & 10 & {\tt UbarDWmZind-collEW} & NLOEW & Yes\\
+2 & 11 & {\tt UbarDWmZgam-fin} & NLOEW & Yes\\
+2 & 12 & {\tt UbargamDbarWmZ-fin} & NLOEW & Yes\\
+2 & 13 & {\tt DgamUWmZ-fin} & NLOEW & Yes\\
+2 & 14 & {\tt UbarDWmZ-virtEW-decayZ} & NLOEW & Yes\\
+2 & 15 & {\tt UbarDWmZgam-fin-decayZ} & NLOEW & Yes\\
+2 & 16 & {\tt UbarDWmZ-virtEW-decayW} & NLOEW & Yes\\
+2 & 17 & {\tt UbarDWmZgam-fin-decayW} & NLOEW & Yes\\
+\hline
+\end{tabular}
+\caption{\small ID numbers for the $W^-Z$ process $pp \to e^-\bar{\nu}_e\mu^+\mu^-$.}
+\label{tab:IDs_proc_cont_WmZ}
+\end{center}
+\end{table}
+
+\newpage
+\subsection{WW}
+
+% (All WW tables updated in the same way: Contribution ID → ID−1)
+
+\begin{table}[th!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+IDp & IDc & Name & Correction Type & Polarized \\
+\hline
+3 & 0 & {\tt UbarUWW4lfull-born} & LO & No\\
+3 & 1 & {\tt UbarUWW-born} & LO & Yes\\
+3 & 2 & {\tt UbarUWW-virtQCD} & NLOQCD & Yes\\
+3 & 3 & {\tt UbarUWWrad-collQCD} & NLOQCD & Yes\\
+3 & 4 & {\tt UbarUWWind-collQCD} & NLOQCD & Yes\\
+3 & 5 & {\tt UbarUWWglu-fin} & NLOQCD & Yes\\
+3 & 6 & {\tt UbargluUbarWW-fin} & NLOQCD & Yes\\
+3 & 7 & {\tt UgluUWW-fin} & NLOQCD & Yes\\
+3 & 8 & {\tt UbarUWW-virtEW} & NLOEW & Yes\\
+3 & 9 & {\tt UbarUWWrad-collEW} & NLOEW & Yes\\
+3 & 10 & {\tt UbarUWWind-collEW} & NLOEW & Yes\\
+3 & 11 & {\tt UbarUWWgam-fin} & NLOEW & Yes\\
+3 & 12 & {\tt UbargamUbarWW-fin} & NLOEW & Yes\\
+3 & 13 & {\tt UgamUWW-fin} & NLOEW & Yes\\
+3 & 14 & {\tt UbarUWW-virtEW-decayWm} & NLOEW & Yes\\
+3 & 15 & {\tt UbarUWWgam-fin-decayWm} & NLOEW & Yes\\
+3 & 16 & {\tt UbarUWW-virtEW-decayWp} & NLOEW & Yes\\
+3 & 17 & {\tt UbarUWWgam-fin-decayWp} & NLOEW & Yes\\
+\hline
+\end{tabular}
+\caption{\small ID numbers for the up-type quark induced $W^+W^-$ processes $pp(U) \to e^+\nu_e\mu^-\bar{\nu}_\mu$. 
+Each contribution includes $u$ and $c$ induced processes.}
+\label{tab:IDs_proc_cont_WW_U}
+\end{center}
+\end{table}
+
+% Remaining WW, ZZ tables follow the same rule (all already shifted by −1)
+\begin{table}[th!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+IDp & IDc & Name & Correction Type & Polarized \\
+\hline
+4 & 0 & {\tt DbarDWW4lfull-born} & LO & No\\
+4 & 1 & {\tt DbarDWW-born} & LO & Yes\\
+4 & 2 & {\tt DbarDWW-virtQCD} & NLOQCD & Yes\\
+4 & 3 & {\tt DbarDWWrad-collQCD} & NLOQCD & Yes\\
+4 & 4 & {\tt DbarDWWind-collQCD} & NLOQCD & Yes\\
+4 & 5 & {\tt DbarDWWglu-fin} & NLOQCD & Yes\\
+4 & 6 & {\tt DbargluDbarWW-fin} & NLOQCD & Yes\\
+4 & 7 & {\tt DgluDWW-fin} & NLOQCD & Yes\\
+4 & 8 & {\tt DbarDWW-virtEW} & NLOEW & Yes\\
+4 & 9 & {\tt DbarDWWrad-collEW} & NLOEW & Yes\\
+4 & 10 & {\tt DbarDWWind-collEW} & NLOEW & Yes\\
+4 & 11 & {\tt DbarDWWgam-fin} & NLOEW & Yes\\
+4 & 12 & {\tt DbargamDbarWW-fin} & NLOEW & Yes\\
+4 & 13 & {\tt DgamDWW-fin} & NLOEW & Yes\\
+4 & 14 & {\tt DbarDWW-virtEW-decayWm} & NLOEW & Yes\\
+4 & 15 & {\tt DbarDWWgam-fin-decayWm} & NLOEW & Yes\\
+4 & 16 & {\tt DbarDWW-virtEW-decayWp} & NLOEW & Yes\\
+4 & 17 & {\tt DbarDWWgam-fin-decayWp} & NLOEW & Yes\\
+\hline
+\end{tabular}
+\caption{\small ID numbers for the down-type quark induced $W^+W^-$ processes $pp(D) \to e^+\nu_e\mu^-\bar{\nu}_\mu$. 
+Each contribution includes $d$ and $s$ induced processes.}
+\label{tab:IDs_proc_cont_WW_D}
+\end{center}
+\end{table}
+
+%%%%%% GGGGG %%%%%
+\begin{table}[th!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+IDp & IDc & Name & Correction Type & Polarized \\
+\hline
+5 & 1 & {\tt glugluWW-loop} & NNLO & Yes\\
+7 & 1 & {\tt gamgamWW-born} & LO & Yes\\
+\hline
+\end{tabular}
+\caption{\small ID numbers for the gluon-gluon loop induced and photon-photon induced $W^+W^-$ processes contributing to $pp \to e^+\nu_e\mu^-\bar{\nu}_\mu$.}
+\label{tab:IDs_proc_cont_WW_gg_aa}
+\end{center}
+\end{table}
+
+%%%%%% MMMMM %%%%
+\begin{table}[th!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+IDp & IDc & Name & Correction Type & Polarized \\
+\hline
+6 & 0 & {\tt BbarBWW4lfull-born} & LO & No\\
+6 & 1 & {\tt BbarBWW-born} & LO & Yes\\
+6 & 2 & {\tt BbarBWW-virtQCD} & NLOQCD & Yes\\
+6 & 3 & {\tt BbarBWWrad-collQCD} & NLOQCD & Yes\\
+6 & 4 & {\tt BbarBWWind-collQCD} & NLOQCD & Yes\\
+6 & 5 & {\tt BbarBWWglu-fin} & NLOQCD & Yes\\
+6 & 6 & {\tt BbargluBbarWW-fin} & NLOQCD & Yes\\
+6 & 7 & {\tt BgluBWW-fin} & NLOQCD & Yes\\
+6 & 8 & {\tt BbarBWW-virtEW} & NLOEW & Yes\\
+6 & 9 & {\tt BbarBWWrad-collEW} & NLOEW & Yes\\
+6 & 10 & {\tt BbarBWWind-collEW} & NLOEW & Yes\\
+6 & 11 & {\tt BbarBWWgam-fin} & NLOEW & Yes\\
+6 & 12 & {\tt BbargamBbarWW-fin} & NLOEW & Yes\\
+6 & 13 & {\tt BgamBWW-fin} & NLOEW & Yes\\
+6 & 14 & {\tt BbarBWW-virtEW-decayWm} & NLOEW & Yes\\
+6 & 15 & {\tt BbarBWWgam-fin-decayWm} & NLOEW & Yes\\
+6 & 16 & {\tt BbarBWW-virtEW-decayWp} & NLOEW & Yes\\
+6 & 17 & {\tt BbarBWWgam-fin-decayWp} & NLOEW & Yes\\
+6 & 18 & {\tt BbargluBbarWW-fin-TW} & NLOQCD & Yes\\
+6 & 19 & {\tt BgluBWW-fin-TW} & NLOQCD & Yes\\
+6 & 20 & {\tt BbargamBbarWW-fin-TW} & NLOEW & Yes\\
+6 & 21 & {\tt BgamBWW-fin-TW} & NLOEW & Yes\\
+\hline
+\end{tabular}
+\caption{\small ID numbers for the bottom-quark induced $W^+W^-$ processes $pp(B) \to e^+\nu_e\mu^-\bar{\nu}_\mu$.}
+\label{tab:IDs_proc_cont_WW_B}
+\end{center}
+\end{table}
+
+
+%%%%%% NNNNN %%%%
+\newpage
+\subsection{ZZ}
+
+\begin{table}[th!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+IDp & IDc & Name & Correction Type & Polarized \\
+\hline
+8 & 0 & {\tt UbarUZZ4lfull-born} & LO & No\\
+8 & 1 & {\tt UbarUZZ-born} & LO & Yes\\
+8 & 2 & {\tt UbarUZZ-virtQCD} & NLOQCD & Yes\\
+8 & 3 & {\tt UbarUZZrad-collQCD} & NLOQCD & Yes\\
+8 & 4 & {\tt UbarUZZind-collQCD} & NLOQCD & Yes\\
+8 & 5 & {\tt UbarUZZglu-fin} & NLOQCD & Yes\\
+8 & 6 & {\tt UbargluUbarZZ-fin} & NLOQCD & Yes\\
+8 & 7 & {\tt UgluUZZ-fin} & NLOQCD & Yes\\
+8 & 8 & {\tt UbarUZZ-virtEW} & NLOEW & Yes\\
+8 & 9 & {\tt UbarUZZrad-collEW} & NLOEW & Yes\\
+8 & 10 & {\tt UbarUZZind-collEW} & NLOEW & Yes\\
+8 & 11 & {\tt UbarUZZgam-fin} & NLOEW & Yes\\
+8 & 12 & {\tt UbargamUbarZZ-fin} & NLOEW & Yes\\
+8 & 13 & {\tt UgamUZZ-fin} & NLOEW & Yes\\
+8 & 14 & {\tt UbarUZZ-virtEW-decayZ2} & NLOEW & Yes\\
+8 & 15 & {\tt UbarUZZgam-fin-decayZ2} & NLOEW & Yes\\
+8 & 16 & {\tt UbarUZZ-virtEW-decayZ1} & NLOEW & Yes\\
+8 & 17 & {\tt UbarUZZgam-fin-decayZ1} & NLOEW & Yes\\
+\hline
+\end{tabular}
+\caption{\small ID numbers for the up-type quark induced $ZZ$ processes $pp(U) \to e^+e^-\mu^+\mu^-$. 
+Each contribution includes $u$ and $c$ induced processes.}
+\label{tab:IDs_proc_cont_ZZ_U}
+\end{center}
+\end{table}
+
+\begin{table}[th!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+IDp & IDc & Name & Correction Type & Polarized \\
+\hline
+9 & 0 & {\tt DbarDZZ4lfull-born} & LO & No\\
+9 & 1 & {\tt DbarDZZ-born} & LO & Yes\\
+9 & 2 & {\tt DbarDZZ-virtQCD} & NLOQCD & Yes\\
+9 & 3 & {\tt DbarDZZrad-collQCD} & NLOQCD & Yes\\
+9 & 4 & {\tt DbarDZZind-collQCD} & NLOQCD & Yes\\
+9 & 5 & {\tt DbarDZZglu-fin} & NLOQCD & Yes\\
+9 & 6 & {\tt DbargluDbarZZ-fin} & NLOQCD & Yes\\
+9 & 7 & {\tt DgluDZZ-fin} & NLOQCD & Yes\\
+9 & 8 & {\tt DbarDZZ-virtEW} & NLOEW & Yes\\
+9 & 9 & {\tt DbarDZZrad-collEW} & NLOEW & Yes\\
+9 & 10 & {\tt DbarDZZind-collEW} & NLOEW & Yes\\
+9 & 11 & {\tt DbarDZZgam-fin} & NLOEW & Yes\\
+9 & 12 & {\tt DbargamDbarZZ-fin} & NLOEW & Yes\\
+9 & 13 & {\tt DgamDZZ-fin} & NLOEW & Yes\\
+9 & 14 & {\tt DbarDZZ-virtEW-decayZ2} & NLOEW & Yes\\
+9 & 15 & {\tt DbarDZZgam-fin-decayZ2} & NLOEW & Yes\\
+9 & 16 & {\tt DbarDZZ-virtEW-decayZ1} & NLOEW & Yes\\
+9 & 17 & {\tt DbarDZZgam-fin-decayZ1} & NLOEW & Yes\\
+\hline
+\end{tabular}
+\caption{\small ID numbers for the down-type quark induced $ZZ$ processes $pp(D) \to e^+e^-\mu^+\mu^-$. 
+Each contribution includes $d$ and $s$ induced processes.}
+\label{tab:IDs_proc_cont_ZZ_D}
+\end{center}
+\end{table}
+
+\begin{table}[th!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+IDp & IDc & Name & Correction Type & Polarized \\
+\hline
+10 & 1 & {\tt glugluZZ-loop} & NNLO & Yes\\
+12 & 0 & {\tt gamgamZZ4lfull-born} & LO & No\\
+\hline
+\end{tabular}
+\caption{\small ID numbers for the gluon-gluon loop induced and photon-photon induced $ZZ$ processes contributing to $pp \to e^+e^-\mu^+\mu^-$.}
+\label{tab:IDs_proc_cont_ZZ_gg_aa}
+\end{center}
+\end{table}
+
+\begin{table}[th!]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+IDp & IDc & Name & Correction Type & Polarized \\
+\hline
+11 & 0 & {\tt BbarBZZ4lfull-born} & LO & No\\
+11 & 1 & {\tt BbarBZZ-born} & LO & Yes\\
+11 & 2 & {\tt BbarBZZ-virtQCD} & NLOQCD & Yes\\
+11 & 3 & {\tt BbarBZZrad-collQCD} & NLOQCD & Yes\\
+11 & 4 & {\tt BbarBZZind-collQCD} & NLOQCD & Yes\\
+11 & 5 & {\tt BbarBZZglu-fin} & NLOQCD & Yes\\
+11 & 6 & {\tt BbargluBbarZZ-fin} & NLOQCD & Yes\\
+11 & 7 & {\tt BgluBZZ-fin} & NLOQCD & Yes\\
+11 & 8 & {\tt BbarBZZ-virtEW} & NLOEW & Yes\\
+11 & 9 & {\tt BbarBZZrad-collEW} & NLOEW & Yes\\
+11 & 10 & {\tt BbarBZZind-collEW} & NLOEW & Yes\\
+11 & 11 & {\tt BbarBZZgam-fin} & NLOEW & Yes\\
+11 & 12 & {\tt BbargamBbarZZ-fin} & NLOEW & Yes\\
+11 & 13 & {\tt BgamBZZ-fin} & NLOEW & Yes\\
+11 & 14 & {\tt BbarBZZ-virtEW-decayZ2} & NLOEW & Yes\\
+11 & 15 & {\tt BbarBZZgam-fin-decayZ2} & NLOEW & Yes\\
+11 & 16 & {\tt BbarBZZ-virtEW-decayZ1} & NLOEW & Yes\\
+11 & 17 & {\tt BbarBZZgam-fin-decayZ1} & NLOEW & Yes\\
+\hline
+\end{tabular}
+\caption{\small ID numbers for the bottom-quark induced $ZZ$ processes $pp(B) \to e^+e^-\mu^+\mu^-$.}
+\label{tab:IDs_proc_cont_ZZ_B}
+\end{center}
+\end{table}
+%%%
+
+\newpage
+\section{Details of contributions}
+\label{sec:cont_details}
+%%%%% Details of contributions %%%%%
+\subsection{\tt XX...4lfull-born}
+\label{sec:full-born}
+This is the full off-shell calculation for the $XX \to 4\ \text{leptons}$ process at LO. 
+PDFs are included. Calculation of unpolarized cross sections can be performed. 
+Polarized cross sections are unavailable.   
+\subsection{\tt XX...V1V2-born}
+\label{sec:DPA-born}
+This is the DPA calculation for the $XX \to V_1 V_2 \to 4\ \text{leptons}$ process at LO. 
+PDFs are included. Calculation of polarized cross sections can be performed.   
+\subsection{\tt XX...V1V2-virtQCD}
+\label{sec:virtQCD}
+This is the DPA calculation for the QCD virtual corrections for the $XX \to V_1 V_2$ process at NLOQCD. 
+Fully leptonic decays are implicitly understood. 
+PDFs are included. Calculation of polarized cross sections can be performed. 
+The QCD virtual corrections here include virtual loop corrections and soft-gluon real corrections 
+(called endpoint contribution in \bib{Dittmaier:1999mb}). 
+This contribution can be calculated using mass regularization or dimensional regularization. 
+The default option is mass regularization.
+\subsection{\tt XX...V1V2rad-collQCD}
+\label{sec:rad-collQCD}
+This is the DPA calculation for the so-called collinear corrections of the real gluon emission process 
+$XX \to V_1 V_2 g$ occurring at NLOQCD. PDFs are included. 
+Calculation of polarized cross sections can be performed. 
+This contribution can be calculated using mass regularization or dimensional regularization. 
+The default option is mass regularization.
+This contribution is called the PK-operator contribution in \cite{Catani:1996vz}. 
+The implementation of mass regularization is based on \cite{Dittmaier:1999mb}. 
+PDF counter terms are here included. 
+\subsection{\tt XX...V1V2ind-collQCD}
+\label{sec:ind-collQCD}
+This contribution is similar to the one described in \sect{sec:rad-collQCD}, but for the 
+(anti)quark-gluon induced process $qg \to V_1 V_2 q^\prime$. 
+\subsection{\tt XX...V1V2glu-fin}
+\label{sec:glu-rad-fin}
+This is the DPA calculation for the remaining finite corrections of the real gluon emission process 
+$XX \to V_1 V_2 g$ occurring at NLOQCD. PDFs are included. 
+Calculation of polarized cross sections can be performed. 
+
+Dipole subtraction terms \cite{Dittmaier:1999mb} are added here such that the integration can be performed in 4 dimensions using 
+massless quarks. 
+\subsection{\tt XbargluYbar...V1V2-fin}
+\label{sec:Qbarglu-ind-fin}
+This contribution is similar to the one described in \sect{sec:glu-rad-fin}, but for the 
+antiquark-gluon induced process $\bar{q}g \to V_1 V_2 \bar{q}^\prime$. 
+\subsection{\tt XgluY...V1V2-fin}
+\label{sec:Qglu-ind-fin}
+This contribution is similar to the one described in \sect{sec:glu-rad-fin}, but for the 
+quark-gluon induced process $qg \to V_1 V_2 q^\prime$. 
+\subsection{\tt XX...V1V2-virtEW}
+\label{sec:virtEW}
+This contribution is similar to the one described in \sect{sec:virtQCD}, but for the 
+EW corrections to the production part (i.e. $XX \to V_1 V_2$). 
+\subsection{\tt XX...V1V2rad-collEW}
+\label{sec:rad-collEW}
+This contribution is similar to the one described in \sect{sec:rad-collQCD}, but for the 
+EW corrections. 
+The corrections here come from the real photon emission process 
+$XX \to V_1 V_2 \gamma$.
+PDF counter terms are here included, using the DIS scheme or $\overline{\text{MS}}$ scheme provided in \cite{Dittmaier:2009cr}. 
+\subsection{\tt XX...V1V2ind-collEW}
+\label{sec:ind-collEW}
+This contribution is similar to the one described in \sect{sec:rad-collEW}, but for the 
+(anti)quark-photon induced process $q\gamma \to V_1 V_2 q^\prime$.
+\subsection{\tt XX...V1V2gam-fin}
+\label{sec:gam-rad-fin}
+This contribution is similar to the one described in \sect{sec:glu-rad-fin}, but for the 
+real photon emission process $XX \to V_1 V_2 \gamma$.
+\subsection{\tt XbargamYbar...V1V2-fin}
+\label{sec:Qbargam-ind-fin}
+This contribution is similar to the one described in \sect{sec:gam-rad-fin}, but for the 
+antiquark-photon induced process $\bar{q}\gamma \to V_1 V_2 \bar{q}^\prime$.
+\subsection{\tt XgamY...V1V2-fin}
+\label{sec:Qgam-ind-fin}
+This contribution is similar to the one described in \sect{sec:Qbargam-ind-fin}, but for the 
+quark-photon induced process $q\gamma \to V_1 V_2 q^\prime$.
+\subsection{\tt XX...V1V2-virtEW-decayVi}
+\label{sec:virtEW-decay}
+This contribution is similar to the one described in \sect{sec:virtEW}, but for the 
+virtual EW corrections to the decay $V_i\to 2\,\text{leptons}$. 
+The process is $XX \to V_1 V_2 \to 4\ \text{leptons}$.
+\subsection{\tt XX...V1V2gam-fin-decayVi}
+\label{sec:gam-rad-fin-decay}
+This contribution is similar to the one described in \sect{sec:gam-rad-fin}, but for the 
+real photon emission off the decay $V_i\to 2\,\text{leptons}$. 
+The process is $XX \to V_1 V_2 \to 4\,\text{leptons}\,+\,\gamma$.
+\subsection{\tt BbargluBbarWW-fin-TW}
+\label{sec:Bbarg-ind-fin-TW}
+This is an on-shell $tW$ contribution to the $W^+W^-$ process, originated from the $\bar{b}g$ induced 
+initial state. This contribution is needed to subtract the on-shell $tW$ contribution occurring in 
+the $\bar{b}g \to W^+W^- \bar{b}$ process (the {\tt BbargluBbarWW-fin} contribution 
+described in \sect{sec:Qbarglu-ind-fin}). 
+PDFs are included. Calculation of polarized cross sections can be performed. 
+The process is $\bar{b}g \to W^+ \bar{t} \to W^+W^-\bar{b}$.
+Details of this contribution are provided in \cite{Dao:2024ffg}.
+\subsection{\tt BgluBWW-fin-TW}
+\label{sec:Bg-ind-fin-qcd-TW}
+This contribution is similar to the one described in \sect{sec:Bbarg-ind-fin-TW}, but originated 
+from the $bg$ induced process $bg \to W^- t \to W^+W^-b$.
+Details are also provided in \cite{Dao:2024ffg}.
+\subsection{\tt BbargamBbarWW-fin-TW}
+\label{sec:Bbargam-ind-fin-TW}
+This contribution is similar to the one described in \sect{sec:Bbarg-ind-fin-TW}, but originated 
+from the $\bar{b}\gamma$ induced process $\bar{b}\gamma \to W^+ \bar{t} \to W^+W^-b$.
+Details are provided in \cite{Dao:2024ffg}.
+\subsection{\tt BgamBWW-fin-TW}
+\label{sec:Bgam-ind-fin-TW}
+This contribution is similar to the one described in \sect{sec:Bbargam-ind-fin-TW}, but originated 
+from the $b\gamma$ induced process $b\gamma \to W^- t \to W^+W^-b$.
+Details are provided in \cite{Dao:2024ffg}.
+
+
+
+
+\newpage
+
+
+%--------------------------------------------------------------------------------
+%================= Section ======================================================
+%--------------------------------------------------------------------------------
+
+\newpage
+
+\bibliographystyle{JHEP}
+\bibliography{MulBos}
+\end{document}
+
+%%%%%%%%%%%%%%%%%%
+% other things:
+%%%%%%%%%%%%%%%%%%
+%%%
+\section{Regularization for IR divergences}
+To calculate NLO corrections (either QCD or EW), one must use a regularization method to deal 
+with IR divergences. For NLO QCD, one can use either mass regularization or dimensional regularization. 
+For NLO EW, mass regularization has been fully implemented. 
+Dimensional regularization has been largely implemented, but there are still some missing corrections (e.g. I-operator for the $V$ decays). 
+The default choice is therefore mass regularization, which is set via {\tt lMassReg = .true.} in {\tt global\_vars.F90}. 
+
+\section{Off-shell contribution}
+Off-shell contribution can be made small by imposing kinematic cuts targeting 
+the double-resonance region. However, there can be some phase-space regions 
+where off-shell effects are significant (being around $10\%$). 
+These effects can be neglected in the first approximation. 
+For precise measurements, they must be taken into account though.   
+
+Off-shell contribution is 
+the difference between the full off-shell and the unpolarized DPA cross sections, 
+which should be calculated at the same perturbative order. 
+The unpolarized DPA results (denoted as $44$ in \tab{tab:IDs_polars}) 
+are provided by \mulbos\ at NLOQCDEW for quark-induced processes and at LO for 
+the gluon-gluon and photon-photon processes. Only a few LO off-shell processes 
+(denoted by keyword {\tt full} in 
+Tables~\ref{tab:IDs_proc_cont_WpZ},\ref{tab:IDs_proc_cont_WmZ},\ref{tab:IDs_proc_cont_WW_U},\ref{tab:IDs_proc_cont_WW_D}...) 
+are provided in our program. The NLOQCD results for the full off-shell 
+processes can be obtained using e.g. \vbfnlo\ or \madgraph, while NLOEW corrections via e.g. 
+\madgraph.   
+
+%\section{Collaborations}
+%Ideas for collaborations are welcome !

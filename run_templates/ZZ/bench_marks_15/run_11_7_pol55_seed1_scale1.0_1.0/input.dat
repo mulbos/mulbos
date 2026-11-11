@@ -1,0 +1,41 @@
+! input file for MulBos
+! Energy and mass in GeV unit
+
+PROC_ID = 11 ! ID of the process
+PROC_CONT = 7 ! ID of the contribution
+
+OUTPUT_DIR = dist ! name of output directory
+HIST_WRITEOUT = 2 ! flag to control writing out histograms (possible values: 1,2,3,4)
+
+POLARIZATION = 55 ! 2=L, 5=T, 4=Unpolarized
+FRAME_POLAR = 1 ! 1 for VV cms, 2 for lab frame, 3 for partonic frame
+
+ECM = 13000d0   ! collider center-of-mass energy
+
+RANDOM_SEED = 1 ! seed for Monte-Carlo integration
+RANDOM_POINTS = 15 ! actual points: 2**(RANDOM_POINTS)
+
+PDF_SET    = NNPDF31_nnlo_as_0118_luxqed.LHgrid
+PDF_MEMBER = 0
+
+OS_MAP = 1 ! default, all cases
+
+SCALE_MUF = 1 ! 0 (user input value), 1 (default fixed scale), 2 (dynamical)
+SCALE_MUR = 1 ! 0 (user input value), 1 (default fixed scale), 2 (dynamical)
+MUF_USER = 100d0 ! user defined factorization scale, if SCALE_MUF is set to 0
+MUR_USER = 100d0 ! user defined factorization scale, if SCALE_MUR is set to 0
+MUF_FAC = 1.0d0 ! scale factor for mu_F (not mu^2)
+MUR_FAC = 1.0d0 ! scale factor for mu_R (not mu^2)
+
+PDF_SCHEME_EW_DIS = false ! true/false, default is true, option for PDF EW counterterm, only for NLOEW
+
+COUPLING_GF = 1.16638D-5 ! Fermi constant
+WMASS = 80.3499709226283D0 ! W mass
+ZMASS = 91.1534806191827D0 ! Z mass
+TOPMASS = 172.69D0 ! top-quark mass
+BOTMASS = 1.0D-2 ! bottom-quark mass for gg fusion
+HMASS = 125.25D0 ! Higgs mass
+WWIDTH = 2.08429885879891D0 ! W width
+ZWIDTH = 2.49426637877282D0 ! Z width
+TOPWIDTH = 0D0 ! top width
+HWIDTH = 0D0 ! Higgs width

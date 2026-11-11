@@ -1,0 +1,220 @@
+ path2 =
+ ./input.dat                                                                    
+                                                                                
+                                                                                
+              
+ Read_Input done
+ path2 =
+ ./cuts.dat                                                                     
+                                                                                
+                                                                                
+              
+ Warning: cannot read value for key = VETO_PY_J_MAX. Using default value : 
+  0.000000000000000E+000
+ Warning: cannot read value for key = VETO_PT_J_MIN. Using default value : 
+   130000000000.000     
+ Warning: cannot read value for key = MINV_4L_1234_MIN. Using default value : 
+  0.000000000000000E+000
+ Warning: cannot read value for key = MINV_4L_1234_MAX. Using default value : 
+   130000000000.000     
+ Read_Cuts done
+ Nlepton =           4
+ Nlep_charged =           4
+ set_run_params done
+ ====================================================
+  LoopInts: a package to evaluate one-loop integrals
+  written by LE Duc Ninh
+  Note: some routines (cache; 3,4-point tensor reduction)
+  are taken from LoopTools
+ ====================================================
+ MESSAGE from YPSetPrec: precision set to  4.440892098500626E-016
+ MESSAGE from YPSetPrec: precision set to
+  3.851859888774471706111955885169855E-0034
+LHAPDF 6.5.6 loading /home/ldninh/codes_hep/lib/lhapdf-6.5.6/share/LHAPDF/NNPDF31_nnlo_as_0118_luxqed/NNPDF31_nnlo_as_0118_luxqed_0000.dat
+NNPDF31_nnlo_as_0118_luxqed PDF set, member #0, version 2; LHAPDF ID = 325100
+ Directory created successfully, dir =./dist/
+ ============================
+ Process information:
+ ----------------------------
+ Process ID:          10
+ Process contribution:           1
+Process:   21     21    -11     11    -13     13
+ Number of legs:           6
+ Reference frame: V...V cms frame
+ Polarization case:          44
+ OS mapping ID, osmap_case =           1
+ ============================
+ SM coupling parameters:
+ ----------------------------
+ 1/Alfa =   132.291562207780     
+ Alfas(scaleR) =  0.118008831288047     
+ Alfas(MZ) =  0.118008831288047     
+ GF =  1.166380000000000E-005
+ SW2 = (0.222992993616353,0.000000000000000E+000)
+ ----------------------------
+ Gauge-boson masses and widths:
+ MW =   80.3499709226283     
+ MZ =   91.1534806191827     
+ GamW =   2.08429885879891     
+ GamZ =   2.49426637877282     
+ ----------------------------
+ Fermion masses and widths:
+ ME =  1.000000000000000E-002
+ MM =  1.000000000000000E-002
+ ML =  1.000000000000000E-002
+ MU =  1.000000000000000E-002
+ MC =  1.000000000000000E-002
+ MT =   172.690000000000     
+ MD =  1.000000000000000E-002
+ MS =  1.000000000000000E-002
+ MB =  1.000000000000000E-002
+ GamTq =  0.000000000000000E+000
+ ----------------------------
+ Higgs mass and width:
+ MH =   125.250000000000     
+ GamH =  0.000000000000000E+000
+ ============================
+ Use mass regularization for IR
+ ============================
+ Scale info:
+ Factorization scale is fixed
+ Renormalization scale is fixed
+ scale_muf_case =           1
+ scale_mur_case =           1
+ scale_facF =   1.00000000000000     
+ scale_facR =   1.00000000000000     
+ factorization   scale =   91.1534806191827     
+ renormalization scale =   91.1534806191827     
+ ============================
+ Technical cuts:
+ eps_GramDet4 =  1.000000000000000E-005
+ ============================
+ PDF info:
+ PDF set =NNPDF31_nnlo_as_0118_luxqed.LHgrid
+ PDF member =           0
+ Monte Carlo random seed =           1
+ ============================
+
+                                                       Date: 26/11/ 8  06:18
+        **********************************************************
+        *                                                        *
+        *     BBBBBBB     AAAA     SSSSSS   EEEEEE   SSSSSS      *
+        *     BB    BB   AA  AA   SS    SS  EE      SS    SS     *
+        *     BB    BB  AA    AA  SS        EE      SS           *
+        *     BBBBBBB   AAAAAAAA   SSSSSS   EEEEEE   SSSSSS      *
+        *     BB    BB  AA    AA        SS  EE            SS     *
+        *     BB    BB  AA    AA  SS    SS  EE      SS    SS     *
+        *     BBBB BB   AA    AA   SSSSSS   EEEEEE   SSSSSS      *
+        *                                                        *
+        *                   BASES Version 5.1                    *
+        *           coded by S.Kawabata KEK, March 1994          *
+        **********************************************************
+
+
+     <<   Parameters for BASES    >>
+
+      (1) Dimensions of integration etc.
+          # of dimensions :    Ndim    =        9   ( 50 at max.)
+          # of Wilds      :    Nwild   =        9   ( 15 at max.)
+          # of sample points : Ncall   =    32768(real)    32768(given)
+          # of subregions    : Ng      =       50 / variable
+          # of regions       : Nregion =        2 / variable
+          # of Hypercubes    : Ncube   =      512
+
+      (2) About the integration variables
+          ------+---------------+---------------+-------+-------
+              i       XL(i)           XU(i)       IG(i)   Wild
+          ------+---------------+---------------+-------+-------
+              1    0.000000E+00    1.000000E+00     1      yes
+              2    0.000000E+00    1.000000E+00     1      yes
+              3    0.000000E+00    1.000000E+00     1      yes
+              4    0.000000E+00    1.000000E+00     1      yes
+              5    0.000000E+00    1.000000E+00     1      yes
+              6    0.000000E+00    1.000000E+00     1      yes
+              7    0.000000E+00    1.000000E+00     1      yes
+              8    0.000000E+00    1.000000E+00     1      yes
+              9    0.000000E+00    1.000000E+00     1      yes
+          ------+---------------+---------------+-------+-------
+
+      (3) Parameters for the grid optimization step
+          Max.# of iterations: ITMX1 =        5
+          Expected accuracy  : Acc1  =   0.0020 %
+
+      (4) Parameters for the integration step
+          Max.# of iterations: ITMX2 =        5
+          Expected accuracy  : Acc2  =   0.0010 %
+
+                                                       Date: 26/11/ 8  06:18
+               Convergency Behavior for the Grid Optimization Step
+ ------------------------------------------------------------------------------
+ <- Result of  each iteration ->  <-     Cumulative Result     -> < CPU  time >
+  IT Eff R_Neg   Estimate  Acc %  Estimate(+- Error )order  Acc % ( H: M: Sec )
+ ------------------------------------------------------------------------------
+ ******* WARNING FROM BASES *******************
+ *  Negative FUNCTION at IT =  1 , node =   0 *
+ **********************************************
+   1   8  0.15  1.670E-03  4.556  1.669906(+-0.076082)E-03  4.556   0: 0:19.85
+   2  52  0.06  1.688E-03  0.745  1.687300(+-0.012402)E-03  0.735   0: 1:55.94
+   3  63  0.05  1.701E-03  0.515  1.696230(+-0.007157)E-03  0.422   0: 3:36.46
+   4  66  0.02  1.712E-03  0.509  1.702593(+-0.005533)E-03  0.325   0: 4:58.41
+   5  66  0.02  1.698E-03  0.505  1.701363(+-0.004648)E-03  0.273   0: 6: 8.15
+ ------------------------------------------------------------------------------
+
+                                                       Date: 26/11/ 8  06:18
+               Convergency Behavior for the Integration Step      
+ ------------------------------------------------------------------------------
+ <- Result of  each iteration ->  <-     Cumulative Result     -> < CPU  time >
+  IT Eff R_Neg   Estimate  Acc %  Estimate(+- Error )order  Acc % ( H: M: Sec )
+ ------------------------------------------------------------------------------
+ ******* WARNING FROM BASES *******************
+ *  Negative FUNCTION at IT =  1 , node =   0 *
+ **********************************************
+   1  66  0.02  1.707E-03  0.492  1.706549(+-0.008389)E-03  0.492   0: 7:19.65
+   2  67  0.02  1.705E-03  0.487  1.705839(+-0.005905)E-03  0.346   0: 8:28.94
+   3  66  0.02  1.694E-03  0.512  1.702221(+-0.004882)E-03  0.287   0: 9:37.12
+   4  66  0.04  1.710E-03  0.505  1.703990(+-0.004250)E-03  0.249   0:10:33.34
+   5  66  0.04  1.680E-03  0.498  1.699081(+-0.003789)E-03  0.223   0:11:24.76
+ ------------------------------------------------------------------------------
+
+                    ****** END OF BASES *********
+
+
+     <<   Computing Time Information   >>
+
+               (1) For BASES              H: M:  Sec
+                   Overhead           :   0: 0: 0.00
+                   Grid Optim. Step   :   0: 6: 8.15
+                   Integration Step   :   0: 5:16.61
+                   Go time for all    :   0:11:24.76
+
+               (2) Expected event generation time
+                   Expected time for 1000 events :      2.76 Sec
+ 
+ -------------------------------------------------------
+Energ, Xsect[pb], error : 0.130E+05  0.16990805E-02  0.37891907E-05
+ -------------------------------------------------------
+ Number of before-cut points:      327680
+ Number of after-cut points:      193315  0.589950561523438     
+ Number of NaN points:           0  0.000000000000000E+000
+ Number of bad points:           0  0.000000000000000E+000
+ Number of bad gram det. points (boxes):         665  2.029418945312500E-003
+ LHAPDFVersion:6.5.6     
+ LoopInts information:
+ Caching is on.
+ UV regulator: delta  =  0.000000000000000000000000000000000E+0000
+ IR regulator: lambda =   1.00000000000000000000000000000000      
+ DR regulator: mudim  =   1.00000000000000000000000000000000      
+ xrat switch : xrat   =   1.00000000000000000000000000000000      
+ 3pt maximal rank =           3
+ 4pt maximal rank =           4
+ 5pt maximal rank =   -22189864
+ precision para   : prec   =  3.851859888774471706111955885169855E-0034
+ small-mass apprx : stab0  =  9.999999999999999094962236517725194E-0013
+ precision para   : prec   =  4.440892098500626E-016
+ small-mass apprx : stab0  =  1.000000000000000E-006
+ 3-pt cutoff : stab3  =  1.000000000000000E-004
+ 4-pt cutoff : stab4  =  1.000000000000000E-002
+ 5-pt cutoff : stab5  =  1.000000000000000E-010
+ 6-pt cutoff : stab6  =  1.000000000000000E-012
+Thanks for using LHAPDF 6.5.6. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

@@ -1,0 +1,67 @@
+! input for kinematic cuts
+! Energy and mass in GeV unit
+
+RECOMB_PY_A_MAX = 50d0 ! photon threshold for lepton-photon recombination
+RECOMB_DR_LA = 0.1d0 ! lepton-photon recombination parameter
+RECOMB_EXP = 0d0 ! 0d0 (default DR distance), 1d0 (kt distance/algorithm), -1d0 (anti-kt)
+
+!VETO_PY_J_MAX = 4.5D0
+!VETO_PT_J_MIN = 35D0
+
+! this is a technical cut to probe the MW resonance
+MINV_4L_MIN = 180d0
+MINV_4L_MAX = 9d9
+
+! invariant mass of di-lepton systems:
+MINV_LL12_MIN = 81d0
+MINV_LL12_MAX = 101d0
+        
+MINV_LL34_MIN = 81d0
+MINV_LL34_MAX = 101d0
+
+MINV_LL13_MIN = 0d0
+MINV_LL13_MAX = 9d9
+        
+MINV_LL12_SHIFT = 9d9 ! a cut around MV1 pole
+MINV_LL34_SHIFT = 9d9 ! a cut around MV2 pole
+
+! transverse mass:
+MT_LL12_MIN = 0D0 ! a cut on MT_LL12
+MT_LL34_MIN = 0D0 ! a cut on MT_LL34
+        
+PT_L1_MIN = 7d0
+PT_L2_MIN = 7d0
+PT_L3_MIN = 5d0
+PT_L4_MIN = 5d0
+PT_LLEAD_MIN = 20D0
+PT_LLEAD2_MIN = 20D0
+
+PY_L1_MAX = 2.47d0
+PY_L2_MAX = 2.47d0
+PY_L3_MAX = 2.7d0
+PY_L4_MAX = 2.7d0
+        
+DR_LL12_MIN = 0.05d0
+DR_LL13_MIN = 0.05d0
+DR_LL14_MIN = 0.05d0
+DR_LL23_MIN = 0.05d0
+DR_LL24_MIN = 0.05d0
+DR_LL34_MIN = 0.05d0
+        
+! PT of 4L system
+PT_4L_MIN = 0d0
+PT_4L_MAX = 9d9
+        
+! PT of di-lepton systems
+PT_LL12_MIN = 0d0
+PT_LL12_MAX = 9d9
+PT_LL34_MIN = 0d0
+PT_LL34_MAX = 9d9
+PT_LL13_MIN = 0d0
+PT_LL13_MAX = 9d9
+
+! PT of missing energy (neutrinos only)
+PT_MISS_MIN = 0D0
+PT_MISS_MAX = 9d9
+
+

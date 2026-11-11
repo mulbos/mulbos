@@ -1,0 +1,1 @@
+mulbos_version="MulBos-v1.0.0"

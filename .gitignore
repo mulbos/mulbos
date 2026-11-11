@@ -1,0 +1,16 @@
+*.a
+*.o
+*.mod
+*.so
+*.la
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.pyc
+mulbos
+./working_ninh/
+./processes/__pycache__
+*.tar.gz
