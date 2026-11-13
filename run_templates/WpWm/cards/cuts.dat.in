@@ -1,5 +1,6 @@
 ! input for kinematic cuts
 ! Energy and mass in GeV unit
+! particle numbering for this file: e+(1) nu_e(2) mu-(3) nu_mu(4)
 
 RECOMB_PY_A_MAX = 5d0 ! photon threshold for lepton-photon recombination
 RECOMB_DR_LA = 0.1d0 ! lepton-photon recombination parameter
