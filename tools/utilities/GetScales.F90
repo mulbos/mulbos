@@ -6,6 +6,7 @@
 	implicit none
 	logical lSub
 	integer i
+	integer scale_ID ! for adding a new dynamical scale
         double precision tmp, scale0(2:n_scales_max) ! 0, 1 are reserved for fix scales
         double precision p(4,nlegs_max), q(4)
         double precision inv_mass_p, inv_mass_p2, inv_mass, inv_mass2
@@ -20,26 +21,31 @@
          p(:,i) = vext_jend(1:4,i)
         endif
         enddo
-
-        if (scale_muf_case.eq.2.or.scale_mur_case.eq.2) then
-        q(:) = 0d0
-        do i = 3, proc_nlegs
-         q(:) = q(:) + p(:,i)
-        enddo
-! scale0 = m_inv_final/2 (jets, photons included):
-        tmp = sqrt(q(2)**2+q(3)**2+q(4)**2)
-        scale0(2) = 0.5D0*sqrt((q(1)-tmp)*(q(1)+tmp))
-        endif
         
-        if (scale_muf_case.eq.3.or.scale_mur_case.eq.3) then
+!!![default dynamical scale choice with ID = 2
+        scale_ID = 2 ! default dynamical scale 
+        if (scale_muf_case.eq.scale_ID.or.scale_mur_case.eq.scale_ID) then
           q(:) = 0d0
           do i = 3, Nlepton + 2
            q(:) = q(:) + p(:,i)
           enddo
 ! scale0 = m_inv_leptons/2:
         tmp = sqrt(q(2)**2+q(3)**2+q(4)**2)
-        scale0(3) = 0.5D0*sqrt((q(1)-tmp)*(q(1)+tmp))
+        scale0(scale_ID) = 0.5D0*sqrt((q(1)-tmp)*(q(1)+tmp))
         endif
+!!!]default dynamical scale choice with ID = 2
+
+!!![new dynamical scale choice with ID > 2
+        ! scale_ID = XXX ! choose an integer value > 2 and has not been used 
+        if (scale_muf_case.gt.2.or.scale_mur_case.gt.2) then
+        print*,"Error: this dynamical scale choice has not been implemented"
+        print*,"scale_muf_case =",scale_muf_case
+        print*,"scale_mur_case =",scale_mur_case
+        print*,"check your input scale choice in input.dat.in"
+        print*,"or implement the new scale here"
+        stop
+        endif
+!!!]new dynamical scale choice with ID > 2
 
         ! whether to update scales:
         if (lscaleF_dyn) then

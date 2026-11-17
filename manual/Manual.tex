@@ -546,7 +546,10 @@ with $i=0.5,1,2$ and $j=0.5,1,2$, with the constraint of $i/j < 4$ and $j/i < 4$
 In this calculation one can reduce significantly computing time by noting that only the QCD-correction 
 contributions ({\tt IDc=2,3,4,5,6,7} for all $VV$ processes, for the case of $WW$ there are 
 additionally {\tt IDc=18,19}) depend on both $\mu_F$ and $\mu_R$. The other contributions (LO and NLOEW corrections) 
-depend only on $\mu_F$.  
+depend only on $\mu_F$. 
+Finally, we note that the variation of ($\mu_{F}$,$\mu_{R}$) around the central point 
+is achieved by changing the input parameters {\tt MUF\_FAC} and {\tt MUR\_FAC} (which are multiplication factors for 
+$\mu_F$ and $\mu_R$) in the {\tt input.dat.in}.
 %%%
 \section{Guidelines for implementing new cuts}
 \label{sec:cuts}
@@ -575,6 +578,24 @@ As in the case of cuts, one must do charged lepton photon recombination before c
 filling the histogram \\
 (command {\tt CALL XHFILL(ID,pos\_bin,weight)}).
 %%%
+\section{Guidelines for implementing new dynamical scales}
+\label{sec:scales}
+The default scale choice for $\mu_F$ and $\mu_R$ is the fixed scale $\mu_F = \mu_R = (m_{V_1} + m_{V_2})/2$. 
+This is activated via the settings of {\tt SCALE\_MUF = 1} and {\tt SCALE\_MUR = 1} 
+in the input card {\tt input.dat.in}. 
+Alternatively, setting {\tt SCALE\_MUF = k} and {\tt SCALE\_MUR = k} with $k>1$ (integer value) enables dynamical scales. 
+$k$ is the scale ID. 
+At the current version only one dynamical scale of $\mu_F = \mu_R = m_{4l}/2$ is implemented. 
+This can be used with the setting of $k=2$.  
+If one wishes to implement a new dynamical scale, this can be easily done in {\tt utilities/GetScales.F90} by 
+following the example case of $k=2$ ($k$ is the {\tt scale\_ID} in {\tt GetScales.F90}). 
+One must give this new dynamical scale a new ID (greater than 2), which will then be used in the {\tt input.dat.in} to choose 
+the new scale. Before using the new scale, one must run {\tt make clean} and {\tt make} in {\tt tools/utilities} to update the {\tt utilities} library. 
+
+Note that the dynamical scales implemented in {\tt GetScales.F90} correspond to the central values of ($\mu_{F0}$,$\mu_{R0}$). 
+In order to calculate the scale uncertainties, one needs to vary the values of ($\mu_{F}$,$\mu_{R}$) around this central point. 
+This is achieved by changing the input parameters {\tt MUF\_FAC} and {\tt MUR\_FAC} (which are multiplication factors for 
+$\mu_F$ and $\mu_R$) in the {\tt input.dat.in}. 
 %\section{Conclusions and Outlook}
 %\section*{Acknowledgments}
 %%%
@@ -988,19 +1009,13 @@ Details are provided in \cite{Dao:2024ffg}.
 This contribution is similar to the one described in \sect{sec:Bbargam-ind-fin-TW}, but originated 
 from the $b\gamma$ induced process $b\gamma \to W^- t \to W^+W^-b$.
 Details are provided in \cite{Dao:2024ffg}.
-
-
-
-
+%%%
+\subsection{\tt glugluV1V2-loop}
+\label{sec:DPA-loop-gg}
+This is the DPA calculation for the $gg \to V_1 V_2 \to 4\ \text{leptons}$ loop-induced process at NNLO. 
+PDFs are included. Calculation of polarized cross sections can be performed.
+%%%
 \newpage
-
-
-%--------------------------------------------------------------------------------
-%================= Section ======================================================
-%--------------------------------------------------------------------------------
-
-\newpage
-
 \bibliographystyle{JHEP}
 \bibliography{MulBos}
 \end{document}
