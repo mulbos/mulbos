@@ -3,6 +3,7 @@ double precision minv_4l_min, minv_4l_max
 double precision minv_4lep_min(3), minv_4lep_max(3)
 double precision DRLA, py_phot_recomb, p_recomb
 double precision py_jet_veto_max, pt_jet_veto_min
+integer veto_case
 double precision minv_LL12_min, minv_LL12_max
 double precision minv_LL34_min, minv_LL34_max
 double precision pTmin_L(6), pTmin_Llead, pTmin_Llead2
@@ -36,10 +37,24 @@ contains
         call read_Real("RECOMB_EXP",p_recomb,0d0)
         
         ! default: no jet veto
+        call read_int("VETO_CASE",veto_case,0)
         ! pseudo-rapidity max for jet veto
         call read_Real("VETO_PY_J_MAX",py_jet_veto_max,0d0)
         ! pt min for jet veto
         call read_real("VETO_PT_J_MIN",pt_jet_veto_min,13d10)
+        if (veto_case.eq.2) then
+        ! jet veto for b-jet only
+         if (Nbottom_final.gt.0) then
+          print*,"jet veto for bottom jets is on"
+          print*,"veto_case:", veto_case
+          print*,"py_jet_veto_max:", py_jet_veto_max
+          print*,"pt_jet_veto_min:", pt_jet_veto_min
+         else
+          ! reset jetveto parameters to no jetveto:
+          py_jet_veto_max = 0d0
+          pt_jet_veto_min = 13d10
+         endif
+        endif
         
         ! this is a technical cut to probe the MW resonance
         call read_Real("MINV_4L_MIN",minv_4l_min,0d0)

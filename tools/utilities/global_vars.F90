@@ -20,6 +20,7 @@ module global_vars
       integer n_cont(n_id_max) ! the maximal idc for each idp (contribution id, starting from zero)
       integer Nlepton, Nlep_charged, Nquark, Nphoton, Ngluon
       integer Nup, Ndown, Nbottom
+      integer Nbottom_final
       character*200 dir_name
       character*512 dir_save
       character*200 pdf_set
@@ -225,6 +226,7 @@ contains
       Nup = 0
       Ndown = 0
       Nbottom = 0
+      Nbottom_final = 0
       Nphoton = 0
       Ngluon = 0
       Nlep_charged = 0
@@ -247,7 +249,10 @@ contains
          else
           Ndown = Ndown + 1
           charge_qed(i) = -1D0/3*leg(i)/abs(leg(i))
-          if (abs(leg(i)) .eq. 5) Nbottom = Nbottom + 1
+          if (abs(leg(i)) .eq. 5) then ! bottom quark
+           Nbottom = Nbottom + 1
+           if (i.gt.2) Nbottom_final = Nbottom_final + 1
+          endif
          endif
         else if (leg(i).eq.21) then
          Ngluon = Ngluon + 1
