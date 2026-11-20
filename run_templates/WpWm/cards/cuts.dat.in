@@ -6,6 +6,7 @@ RECOMB_PY_A_MAX = 5d0 ! photon threshold for lepton-photon recombination
 RECOMB_DR_LA = 0.1d0 ! lepton-photon recombination parameter
 RECOMB_EXP = 0d0 ! 0d0 (default DR distance), 1d0 (kt distance/algorithm), -1d0 (anti-kt)
 
+! jet veto parameters:
 VETO_CASE = 0 ! Integer type, 0 (no veto, default), 1 (veto for all jets), 2 (veto for only b-jet)
 VETO_PY_J_MAX = 4.5D0 ! pseudorapidity condition
 VETO_PT_J_MIN = 35D0 ! transverse momentum condition

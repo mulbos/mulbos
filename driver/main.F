@@ -16,12 +16,12 @@ c        file_cuts = path_home(1:lnblnk(path_home))//'cuts.dat'
         file_cuts = trim(path_home) // 'cuts.dat'
         call Read_Input(file_input)
         print*,"Read_Input done"
-        call Read_Cuts(file_cuts)
-        print*,"Read_Cuts done"
+
 c        dir_save = path_home(1:lnblnk(path_home))//dir_name
         dir_save = trim(path_home) // dir_name
 c        dir_save = dir_save(1:lnblnk(dir_save))//'/'
         dir_save = trim(dir_save) // '/'
+
         call set_run_params()
         print*,"set_run_params done"
         call get_sm_para_ext() ! calculate the common block: sm_para_ext
@@ -31,6 +31,9 @@ c        dir_save = dir_save(1:lnblnk(dir_save))//'/'
 	
         !lopen_dir=makedirqq(dir_save) ! intel ifx
         call makedir_mb(dir_save)
+
+        call Read_Cuts(file_cuts)
+        print*,"Read_Cuts done"
         
         call IntegratedCS
 

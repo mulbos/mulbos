@@ -20,7 +20,8 @@ module global_vars
       integer n_cont(n_id_max) ! the maximal idc for each idp (contribution id, starting from zero)
       integer Nlepton, Nlep_charged, Nquark, Nphoton, Ngluon
       integer Nup, Ndown, Nbottom
-      integer Nbottom_final
+      integer Nquark_final, Ngluon_final, Nphoton_final, Nbottom_final
+      integer Njet
       character*200 dir_name
       character*512 dir_save
       character*200 pdf_set
@@ -227,6 +228,9 @@ contains
       Ndown = 0
       Nbottom = 0
       Nbottom_final = 0
+      Nquark_final = 0
+      Ngluon_final = 0
+      Nphoton_final = 0
       Nphoton = 0
       Ngluon = 0
       Nlep_charged = 0
@@ -242,6 +246,7 @@ contains
          endif
         else if (abs(leg(i)).ge.1.and.abs(leg(i)).le.6) then
          Nquark = Nquark + 1
+         if (i.gt.2) Nquark_final = Nquark_final + 1
          charge_qcd(i) = leg(i)/abs(leg(i))         
          if (mod(leg(i),2).eq.0) then
           Nup = Nup + 1
@@ -256,13 +261,17 @@ contains
          endif
         else if (leg(i).eq.21) then
          Ngluon = Ngluon + 1
+         if (i.gt.2) Ngluon_final = Ngluon_final + 1
          charge_qcd(i) = 0         
         else if (leg(i).eq.22) then
          Nphoton = Nphoton + 1
+         if (i.gt.2) Nphoton_final = Nphoton_final + 1
          charge_qcd(i) = 0         
         endif
        endif
       enddo
+      
+      Njet = Nquark_final + Ngluon_final
 
       fac_identical = 1D0
       fac_color = 1D0
@@ -287,8 +296,6 @@ contains
        stop
       endif
       proc_nlegs_os = proc_nlegs + nlegs_res ! add intermediate bosons
-      print*,"Nlepton =",Nlepton
-      print*,"Nlep_charged =",Nlep_charged
       
       lDPA = .true.
       

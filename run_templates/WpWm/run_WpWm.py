@@ -44,7 +44,7 @@ def run():
 
     # polarizations:
     IDh_range = [22,55,52,25,44]
-    #IDh_range = [22]
+    #IDh_range = [22] # Ninh test
     if (CALCULATION == "off_shell"):
         IDh_range = [44] # only unpolarized cross section available
 
@@ -71,7 +71,7 @@ def run():
 
 ##############################################################
 ### Location of MulBos:
-home_mulbos='/hdd1/ldninh/hahn/working/MulBos_public/github/MulBos'
+home_mulbos='/home/ldninh/projects/MulBos/MulBos_public/mulbos'
 
 ### Location of LHAPDF:
 LHAPDF = "/home/ldninh/codes_hep/lib/lhapdf-6.5.6"

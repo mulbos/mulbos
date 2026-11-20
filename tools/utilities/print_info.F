@@ -36,6 +36,13 @@
 102     format (A,I5,2X,I5,2X,I5,2X,I5,2X,I5,2X,I5,2X,I5)
 103     format (A,I5,2X,I5,2X,I5,2X,I5,2X,I5,2X,I5,2X,I5,2X,I5)
 	print*, "Number_of_legs:", proc_nlegs
+	print*, "Number_of_leptons:", Nlepton
+	print*, "Number_of_charged_leptons:", Nlep_charged
+	print*, "Number_of_jet_candidates:", Njet
+	print*, "Number_of_bottom_jet_candidates:", Nbottom_final
+	print*, "Number_of_quark_jet_candidates:", Nquark_final
+	print*, "Number_of_gluon_jet_candidates:", Ngluon_final
+	print*, "Number_of_final_state_photons:", Nphoton_final
 	print*, "Energy_Unit: GeV"
 	print*, "Collision_Energy:", ecm
 	print*, "============================"

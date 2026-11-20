@@ -42,17 +42,47 @@ contains
         call read_Real("VETO_PY_J_MAX",py_jet_veto_max,0d0)
         ! pt min for jet veto
         call read_real("VETO_PT_J_MIN",pt_jet_veto_min,13d10)
+        
+        ! jet = quark or gluon
+        print*,"jet veto_case:", veto_case
+        
         if (veto_case.eq.2) then
         ! jet veto for b-jet only
          if (Nbottom_final.gt.0) then
           print*,"jet veto for bottom jets is on"
-          print*,"veto_case:", veto_case
           print*,"py_jet_veto_max:", py_jet_veto_max
           print*,"pt_jet_veto_min:", pt_jet_veto_min
          else
           ! reset jetveto parameters to no jetveto:
           py_jet_veto_max = 0d0
           pt_jet_veto_min = 13d10
+          if (Njet.gt.0) then
+           print*,"jet veto is off for this contribution"
+          endif
+         endif
+        endif
+
+        if (veto_case.eq.1) then
+         if (Njet.gt.0) then
+          print*,"jet veto for all jets is on"
+          print*,"py_jet_veto_max:", py_jet_veto_max
+          print*,"pt_jet_veto_min:", pt_jet_veto_min
+         endif
+        endif
+        
+        if (veto_case.eq.0) then
+         if (Njet.gt.0) then
+          print*,"jet veto is off"
+         endif
+          py_jet_veto_max = 0d0
+          pt_jet_veto_min = 13d10
+        endif
+
+        if (veto_case.gt.2) then
+         if (Njet.gt.0) then
+          print*,"Error: invalid veto_case"
+          print*,"Check VETO_CASE in cuts.dat.in"
+          stop
          endif
         endif
         
