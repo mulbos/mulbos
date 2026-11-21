@@ -20,6 +20,8 @@ PDF_MEMBER = 0
 
 OS_MAP = 1 ! default, all cases
 
+! Note for dynamical scales: only SCALE_MUF = SCALE_MUR = 2 is available,
+! this choice is mu_F = mu_R = m_{4 leptons}/2
 SCALE_MUF = 1 ! 0 (user input value), 1 (default fixed scale), >=2 (dynamical)
 SCALE_MUR = 1 ! 0 (user input value), 1 (default fixed scale), >=2 (dynamical)
 MUF_USER = 100d0 ! user defined factorization scale, if SCALE_MUF is set to 0

@@ -156,6 +156,7 @@
 {\renewcommand{\baselinestretch}{4}
 %%% ABC ordering based on Family name first, first name second: 
 Thi Nhung Dao$^{1}$,
+Trung Tin Huynh$^{1,2,3}$,
 Duc Ninh Le$^{1}$,
 Van Cuong Le$^{1}$
 }
@@ -163,8 +164,9 @@ Van Cuong Le$^{1}$
 \vspace{0.4cm}
 \begin{center}
   $^{1}$ Phenikaa Institute for Advanced Study, Phenikaa University, Hanoi 12116, Vietnam \\ \noindent
-  %$^{9}$ Particle  Physics,  Faculty  of  Physics,  University  of  Vienna,  Austria\\ \noindent  
-\noindent
+  $^{2}$ Department of Theoretical Physics, Faculty of Physics and Engineering Physics, University of Science, Ho Chi
+Minh City, Vietnam\\ \noindent
+  $^{3}$ Vietnam National University, Ho Chi Minh City, Vietnam
 \end{center}
 \vspace{0.6cm}
 
@@ -501,6 +503,46 @@ IDh_range = [22,55,52,25,44]
 The $\gamma\gamma$ process contributes only to the off-shell case and is included there. 
 The NLO QCD+EW cross sections are then obtained by adding all contributions. 
 %%%
+\subsection{Jet veto}
+\label{sec:jet_veto}
+In experimental analyses, jet veto is often used to reduce backgrounds. This is of particular importance for 
+the $W^+W^-$ channel where the $tW$ and $t\bar{t}$ contributions are huge. 
+
+However, from the theoretical prediction side, jet veto has to be used with great care because it introduces additional 
+theoretical uncertainties due to the veto threshold. A good compromise is therefore using the jet veto only for $b$ jets. 
+This can be done by setting {\tt VETO\_CASE = 2} in {\tt cuts.dat.in}. 
+Choosing {\tt VETO\_CASE = 1} will apply the jet veto on all types of jets. 
+The default value is {\tt VETO\_CASE = 0} where no jet veto is used.
+
+A practical note. As jet veto has effects only on contributions with a quark or a gluon in the final state, one only needs 
+to re-run these contributions when jet-veto parameters are changes. The remaining contributions are unaffected. 
+A jet is vetoed when it satisfies two conditions: (i) $|\eta_j| < \eta_\text{max}$ and (ii) $p_{T,j} > p_{T,\text{veto}}$. 
+The parameter $\eta_\text{max}$ is {\tt VETO\_PY\_J\_MAX}, while $p_{T,\text{veto}}$ is {\tt VETO\_PT\_J\_MIN} in {\tt cuts.dat.in}.
+A jet with $|\eta_j| > \eta_\text{max}$ is considered as being lost in the beam pipes, hence cannot be vetoed.  
+%%%
+\subsection{Dynamical scales}
+\label{sec:dyn_scales}
+The popular scale choice for polarized diboson studies is $\mu_F = \mu_R = (M_{V_1} + M_{V_2})/2$, which is a fixed scale choice. 
+This is a good choice for integrated cross sections. 
+For kinematic distributions, dynamical scales have been known to be a better choice. However, it is almost impossible to have a good scale 
+choice for all distributions. A natural good candidate is $\mu_F = \mu_R = m_{4\ell}/2$, where $m_{4\ell}$ is the invariant mass of the 4-lepton 
+system. This has been proven to be a good scale choice in \cite{Le:2026vnn}, where a comparison study of this scale versus the above fixed scale has been 
+performed for the $ZZ$ case. 
+
+The dynamical scale choice of $\mu_F = \mu_R = m_{4\ell}/2$ is enabled via the settings {\tt SCALE\_MUF = 2} and {\tt SCALE\_MUR = 2} 
+in {\tt input.dat.in}. New dynamical scale choices can be easily added. Detailed instructions are provided in \sect{sec:scales}.   
+%%%
+\subsection{Cuts and distributions}
+\label{sec:cut_dist}
+The present version of the program provides a long list of kinematic cut variables in {\tt cuts.in.dat}. Cut values can be changed there. 
+Any kinematic distributions can be generated. The list of distributions have to be specified before running the program. 
+This is done in two steps. The first step is defining the histogram template, where the distribution range and number of bins must be specified. 
+This is done in {\tt utilities/Hist\_init\_VV.F} (with {\tt VV=WW,WZ,ZZ}). 
+The second step is filling the histogram, which is done in \\
+{\tt utilities/Hist\_fill\_VV.F}. 
+\mulbos\ can generate 2D and 3D histograms. The maximal limit for each type is 200 histograms. 
+More information and instructions of how to implement a new cut or a new distribution are provided in \sect{sec:cuts} and \sect{sec:dists}.
+%%%
 \subsection{Practical advice}
 \label{sec:advice}
 %%% optimal statistics (2^15 to 2^25)
@@ -542,7 +584,7 @@ the results.
 The standard way to calculate the scale uncertainties is to vary $(\mu_F, \mu_R)$ around the central values 
 $(\mu_{F0}, \mu_{R0})$, up and down by a factor of $2$. A well-known method is the seven-point method. 
 The seven scale points are $(\mu_F, \mu_R) = (i\mu_{F0}, j\mu_{R0})$ 
-with $i=0.5,1,2$ and $j=0.5,1,2$, with the constraint of $i/j < 4$ and $j/i < 4$ to avoid wide-separated scales. 
+with $i=0.5,1,2$ and $j=0.5,1,2$, with the constraint of $i/j < 4$ and $j/i < 4$ to avoid too wide-separated scales. 
 In this calculation one can reduce significantly computing time by noting that only the QCD-correction 
 contributions ({\tt IDc=2,3,4,5,6,7} for all $VV$ processes, for the case of $WW$ there are 
 additionally {\tt IDc=18,19}) depend on both $\mu_F$ and $\mu_R$. The other contributions (LO and NLOEW corrections) 
@@ -569,14 +611,27 @@ Note that lepton-photon recombination has not been done on {\tt vext\_jend}.
 %%%
 \section{Guidelines for implementing new distributions}
 \label{sec:dists}
-To implement a new kinematic distribution, one first adds an entry to \\
+To implement a new kinematic distribution of the variable {\tt X}, one first adds an entry to \\
 {\tt utilities/Hist\_init\_VV.F} (with {\tt VV=WW,WZ,ZZ})
 to initialize a histogram template. 
-Notice there that each histogram has an ID whose value is given by the variable {\tt Ncout}. 
-This ID will be used to fill the histogram in the corresponding {\tt utilities/Hist\_fill\_VV.F}. 
-As in the case of cuts, one must do charged lepton photon recombination before calculating the bin-position ({\tt pos\_bin}) for 
-filling the histogram \\
-(command {\tt CALL XHFILL(ID,pos\_bin,weight)}).
+The important command is:
+\begin{verbatim}
+CALL XHINIT(ID,Xmin,Xmax,Nbin,'Distribution Name'),
+\end{verbatim}
+where {\tt ID} is the identification number of the histogram, {\tt Xmin} and {\tt Xmax} give the range of the histogram, 
+{\tt Nbin} is the number of bins. 
+The {\tt ID} will be used to fill the histogram in the corresponding {\tt utilities/Hist\_fill\_VV.F}. 
+As in the case of cuts, one must do charged lepton photon recombination before calculating the bin position for 
+filling the histogram via the command:
+\begin{verbatim}
+CALL XHFILL(ID,X,weight)
+\end{verbatim}
+where {\tt X} is the value of the kinematic variable calculated at the current phase-space point. From this value, the bin position is 
+calculated, and then the {\tt weight} is added to the bin. 
+
+The current list of implemented histograms is available in {\tt Hist\_init\_VV.F}. This list here (in the order of increasing {\tt ID}) 
+corresponds to the list of filenames {\tt distXXX} in the histogram folder {dist/}, where {\tt XXX} is a number (starting from 401). 
+This name convention is set in {\tt utilities/KinDistSetup.F90}. \mulbos\ can generate 2D and 3D histograms. The maximal limit for each type is 200 histograms. 
 %%%
 \section{Guidelines for implementing new dynamical scales}
 \label{sec:scales}

@@ -1,7 +1,10 @@
 ! input for kinematic cuts
 ! Energy and mass in GeV unit
 ! particle numbering for this file: e(1) nu_e(2) mu+(3) mu-(4)
+! notation: PY = pseudorapidity, DR = Delta R distance, PT = transverse momentum, 
+! MINV = invariant mass, MT = transverse mass
 
+! parameters for dressed leptons:
 RECOMB_PY_A_MAX = 5d0 ! photon threshold for lepton-photon recombination
 RECOMB_DR_LA = 0.1d0 ! lepton-photon recombination parameter
 RECOMB_EXP = 0d0 ! 0d0 (default DR distance), 1d0 (kt distance/algorithm), -1d0 (anti-kt)
